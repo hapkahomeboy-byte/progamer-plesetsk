@@ -1,812 +1,219 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Progamer — премиум ПК-клуб</title>
-
-    <!-- Google Fonts: Unbounded (заголовки) + Inter (текст) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;800;900&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progamer — ПК-клуб</title>
     <style>
         /* ===== RESET & BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', sans-serif;
-            background: #0b0b0e;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f0f0f;
             color: #fff;
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
-            min-height: 100vh;
-            /* Радиальный градиент для глубины */
-            background-image: radial-gradient(ellipse at 20% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 60%),
-                              radial-gradient(ellipse at 80% 70%, rgba(236, 72, 153, 0.06) 0%, transparent 50%);
         }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
         /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0b0b0e;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #8b5cf6;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #ec4899;
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
-        }
-
-        /* ===== GLASSMORPHISM BASE ===== */
-        .glass {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .glass-light {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(50px) scale(0.98);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .section-hidden {
-            opacity: 0;
-            transform: translateY(50px) scale(0.98);
-            transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .section-visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f0f0f; }
+        ::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ec4899; }
 
         /* ===== BUTTONS ===== */
         .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 36px;
+            display: inline-block; padding: 12px 32px;
             background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            border: none;
-            border-radius: 60px;
-            color: #fff;
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 700;
-            font-size: 15px;
-            letter-spacing: 0.3px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 25px rgba(236, 72, 153, 0.2), 0 0 60px rgba(139, 92, 246, 0.1);
-            position: relative;
-            overflow: hidden;
+            border: none; border-radius: 50px;
+            color: #fff; font-weight: 700; font-size: 16px;
+            letter-spacing: 0.5px; cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.25);
         }
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 60px;
-            padding: 2px;
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 0 40px rgba(236, 72, 153, 0.4), 0 0 80px rgba(139, 92, 246, 0.2);
-        }
-        .btn-primary:active {
-            transform: scale(0.96);
-        }
+        .btn-primary:hover { transform: scale(1.04); box-shadow: 0 0 35px rgba(236, 72, 153, 0.45); }
+        .btn-primary:active { transform: scale(0.96); }
 
         .btn-outline {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 30px;
-            background: transparent;
-            border: 2px solid rgba(139, 92, 246, 0.4);
-            border-radius: 60px;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
+            display: inline-block; padding: 10px 28px;
+            background: transparent; border: 2px solid #8b5cf6;
+            border-radius: 50px; color: #fff; font-weight: 600; font-size: 15px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(4px);
+            transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
-        .btn-outline:hover {
-            border-color: #ec4899;
-            background: rgba(236, 72, 153, 0.08);
-            box-shadow: 0 0 30px rgba(236, 72, 153, 0.2);
-            transform: translateY(-2px);
-        }
+        .btn-outline:hover { background: rgba(139, 92, 246, 0.15); border-color: #ec4899; box-shadow: 0 0 25px rgba(139, 92, 246, 0.2); }
 
         /* ===== HEADER ===== */
         header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(11, 11, 14, 0.75);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 16px 0;
-            transition: background 0.3s ease;
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(15, 15, 15, 0.88);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 14px 0;
         }
-        .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
+        .header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: 'Unbounded', sans-serif;
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
+            display: flex; align-items: center; gap: 10px;
+            font-size: 24px; font-weight: 800; letter-spacing: -0.5px;
             background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .logo-icon {
-            font-size: 32px;
-            -webkit-text-fill-color: initial;
-            color: #ec4899;
-            filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.3));
-        }
+        .logo-icon { font-size: 30px; -webkit-text-fill-color: initial; color: #ec4899; }
+        .header-actions { display: flex; align-items: center; gap: 18px; }
+        .header-actions .btn-primary { padding: 10px 28px; font-size: 14px; }
 
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 16px;
+        /* ===== HERO ===== */
+        .hero { padding: 80px 0 70px; text-align: center; position: relative; overflow: hidden; }
+        .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.3; pointer-events: none; }
+        .hero::before {
+            content: ''; position: absolute;
+            top: -30%; left: -20%; width: 140%; height: 140%;
+            background: radial-gradient(ellipse at 30% 40%, rgba(139, 92, 246, 0.08), transparent 60%),
+                radial-gradient(ellipse at 70% 60%, rgba(236, 72, 153, 0.06), transparent 50%);
+            pointer-events: none; z-index: 1;
         }
-        .header-actions .btn-primary {
-            padding: 10px 28px;
-            font-size: 13px;
-        }
-
-        /* ===== HERO with VIDEO BACKGROUND ===== */
-        .hero {
-            position: relative;
-            padding: 100px 0 90px;
-            overflow: hidden;
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            opacity: 0.3;
-            filter: brightness(0.6) saturate(1.2);
-        }
-        /* Если видео отсутствует, показываем градиент */
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center, rgba(11, 11, 14, 0.4) 0%, #0b0b0e 80%);
-            z-index: 1;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 800px;
-            padding: 20px;
-        }
-
+        .hero-content { position: relative; z-index: 2; }
         .hero-badge {
-            display: inline-block;
-            padding: 8px 24px;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            border-radius: 60px;
-            font-size: 13px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #8b5cf6;
-            background: rgba(139, 92, 246, 0.06);
-            backdrop-filter: blur(8px);
-            margin-bottom: 28px;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.05);
+            display: inline-block; padding: 6px 18px;
+            border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 50px;
+            font-size: 13px; letter-spacing: 1px; text-transform: uppercase;
+            color: #8b5cf6; margin-bottom: 24px; background: rgba(139, 92, 246, 0.06);
         }
-
         .hero h1 {
-            font-family: 'Unbounded', sans-serif;
-            font-size: clamp(48px, 10vw, 96px);
-            font-weight: 900;
-            line-height: 1.05;
-            letter-spacing: -2px;
-            background: linear-gradient(135deg, #ffffff 0%, #ec4899 45%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            text-shadow: 0 0 60px rgba(236, 72, 153, 0.15);
+            font-size: clamp(44px, 10vw, 88px); font-weight: 900; line-height: 1.05; letter-spacing: -2px;
+            background: linear-gradient(135deg, #fff 0%, #ec4899 50%, #8b5cf6 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 18px;
         }
-
-        .hero p {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.55);
-            max-width: 540px;
-            margin: 0 auto 40px;
-            font-weight: 300;
-            letter-spacing: 0.3px;
-            backdrop-filter: blur(4px);
-            padding: 0 10px;
-        }
-
-        .hero .btn-primary {
-            font-size: 18px;
-            padding: 18px 50px;
-        }
+        .hero p { font-size: 20px; color: rgba(255, 255, 255, 0.55); max-width: 560px; margin: 0 auto 36px; font-weight: 300; letter-spacing: 0.3px; }
+        .hero .btn-primary { font-size: 18px; padding: 16px 44px; }
 
         /* ===== SECTION TITLES ===== */
         .section-title {
-            font-family: 'Unbounded', sans-serif;
-            font-size: clamp(30px, 5vw, 46px);
-            font-weight: 800;
-            letter-spacing: -1px;
+            font-size: clamp(28px, 5vw, 42px); font-weight: 800; letter-spacing: -1px; margin-bottom: 12px;
             background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;
         }
-
-        .section-sub {
-            color: rgba(255, 255, 255, 0.35);
-            font-size: 18px;
-            font-weight: 300;
-            margin-top: 8px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 56px;
-        }
-
-        .glow-line {
-            width: 100px;
-            height: 3px;
-            margin: 16px auto 0;
-            background: linear-gradient(90deg, transparent, #ec4899, #8b5cf6, transparent);
-            border-radius: 4px;
-            filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.3));
-        }
+        .section-sub { color: rgba(255, 255, 255, 0.4); font-size: 17px; font-weight: 300; margin-bottom: 40px; }
+        .section-header { text-align: center; margin-bottom: 48px; }
 
         /* ===== ABOUT ===== */
-        .about {
-            padding: 80px 0 70px;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 28px;
-            margin-top: 10px;
-        }
-
-        .about-item {
-            padding: 36px 24px 32px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border-radius: 28px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-        }
-        .about-item:hover {
-            border-color: rgba(236, 72, 153, 0.2);
-            transform: translateY(-6px);
-            box-shadow: 0 12px 48px rgba(139, 92, 246, 0.08);
-        }
-
-        .about-item .icon {
-            font-size: 48px;
-            margin-bottom: 12px;
-            filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.1));
-        }
-        .about-item .count {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 42px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .about-item .label {
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: 500;
-            font-size: 16px;
-            margin-top: 4px;
-        }
+        .about { padding: 70px 0 60px; border-top: 1px solid rgba(139, 92, 246, 0.08); border-bottom: 1px solid rgba(139, 92, 246, 0.08); }
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 28px; text-align: center; margin-top: 10px; }
+        .about-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(139, 92, 246, 0.12); border-radius: 20px; padding: 32px 20px 28px; transition: border-color 0.3s ease, transform 0.25s ease; backdrop-filter: blur(4px); }
+        .about-item:hover { border-color: rgba(236, 72, 153, 0.3); transform: translateY(-4px); }
+        .about-item .icon { font-size: 44px; margin-bottom: 12px; }
+        .about-item .count { font-size: 38px; font-weight: 800; background: linear-gradient(135deg, #ec4899, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .about-item .label { color: rgba(255, 255, 255, 0.5); font-weight: 500; font-size: 16px; margin-top: 4px; }
 
         /* ===== HALL SCHEME ===== */
-        .hall {
-            padding: 80px 0 70px;
-        }
+        .hall { padding: 70px 0 60px; }
+        .hall-category { margin-bottom: 48px; }
+        .hall-category h3 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .hall-category h3 span { color: rgba(255, 255, 255, 0.3); font-weight: 400; font-size: 16px; }
+        .hall-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+        .hall-grid.ps-grid { grid-template-columns: repeat(3, 1fr); max-width: 540px; }
+        .hall-grid.sim-grid { grid-template-columns: 1fr; max-width: 180px; }
 
-        .hall-category {
-            margin-bottom: 56px;
-        }
-
-        .hall-category h3 {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-        .hall-category h3 span {
-            color: rgba(255, 255, 255, 0.25);
-            font-weight: 400;
-            font-size: 16px;
-        }
-
-        .hall-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-        }
-
-        .hall-grid.ps-grid {
-            grid-template-columns: repeat(3, 1fr);
-            max-width: 560px;
-        }
-
-        .hall-grid.sim-grid {
-            grid-template-columns: 1fr;
-            max-width: 200px;
-        }
-
-        /* ===== CARD (GLASS + NEON) ===== */
+        /* ===== CARD ===== */
         .card {
-            position: relative;
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            padding: 24px 16px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-            user-select: none;
-            min-height: 140px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+            position: relative; background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(139, 92, 246, 0.15); border-radius: 18px;
+            padding: 20px 14px 18px; text-align: center; cursor: pointer;
+            transition: border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            user-select: none; min-height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-        .card::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 24px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.1));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(236, 72, 153, 0.15);
-            box-shadow: 0 8px 40px rgba(236, 72, 153, 0.05), 0 0 60px rgba(139, 92, 246, 0.02);
-        }
-
-        .card .card-icon {
-            font-size: 32px;
-            margin-bottom: 6px;
-            filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.1));
-        }
-        .card .card-label {
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 600;
-            font-size: 17px;
-            color: #fff;
-            letter-spacing: -0.2px;
-            margin-bottom: 2px;
-        }
-        .card .card-sub {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.2);
-            font-weight: 300;
-            margin-bottom: 8px;
-        }
-
-        /* Неоновые пилюли статуса */
+        .card:hover { transform: translateY(-3px); border-color: rgba(236, 72, 153, 0.3); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); }
+        .card .card-label { font-weight: 600; font-size: 18px; margin-bottom: 4px; color: #fff; }
+        .card .card-sub { font-size: 13px; color: rgba(255, 255, 255, 0.25); font-weight: 300; }
         .card .status {
-            display: inline-block;
-            padding: 5px 20px;
-            border-radius: 60px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(4px);
-            border: 1px solid transparent;
-            margin-top: 4px;
+            margin-top: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+            padding: 4px 16px; border-radius: 50px; transition: background 0.3s ease, color 0.3s ease;
         }
-        .card .status.free {
-            color: #4ade80;
-            background: rgba(74, 222, 128, 0.08);
-            border-color: rgba(74, 222, 128, 0.15);
-            box-shadow: 0 0 20px rgba(74, 222, 128, 0.05);
-        }
-        .card .status.occupied {
-            color: #ec4899;
-            background: rgba(236, 72, 153, 0.08);
-            border-color: rgba(236, 72, 153, 0.15);
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.05);
-        }
-
-        .card.occupied {
-            border-color: rgba(236, 72, 153, 0.08);
-            background: rgba(236, 72, 153, 0.02);
-        }
-        .card.free-card {
-            border-color: rgba(74, 222, 128, 0.04);
-        }
-        .card.free-card:hover {
-            border-color: rgba(74, 222, 128, 0.15);
-            box-shadow: 0 8px 40px rgba(74, 222, 128, 0.02);
-        }
+        .card .status.free { color: #4ade80; background: rgba(74, 222, 128, 0.10); border: 1px solid rgba(74, 222, 128, 0.2); }
+        .card .status.occupied { color: #ec4899; background: rgba(236, 72, 153, 0.12); border: 1px solid rgba(236, 72, 153, 0.2); }
+        .card.occupied { border-color: rgba(236, 72, 153, 0.25); background: rgba(236, 72, 153, 0.04); }
+        .card.free-card { border-color: rgba(74, 222, 128, 0.12); }
+        .card.free-card:hover { border-color: rgba(74, 222, 128, 0.3); }
+        .card .card-icon { font-size: 28px; margin-bottom: 4px; }
 
         /* ===== TARIFFS ===== */
-        .tariffs {
-            padding: 80px 0 70px;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
+        .tariffs { padding: 70px 0 60px; border-top: 1px solid rgba(139, 92, 246, 0.08); border-bottom: 1px solid rgba(139, 92, 246, 0.08); }
+        .tariffs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 20px; }
+        .tariff-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(139, 92, 246, 0.1); border-radius: 18px; padding: 28px 16px 24px; text-align: center; transition: border-color 0.3s ease, transform 0.25s ease; }
+        .tariff-item:hover { border-color: rgba(236, 72, 153, 0.25); transform: translateY(-4px); }
+        .tariff-item .price { font-size: 34px; font-weight: 800; background: linear-gradient(135deg, #ec4899, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .tariff-item .price span { font-size: 18px; font-weight: 400; -webkit-text-fill-color: rgba(255, 255, 255, 0.2); }
+        .tariff-item .desc { color: rgba(255, 255, 255, 0.4); font-size: 14px; margin-top: 6px; font-weight: 300; }
 
-        .tariffs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 22px;
-        }
-
-        .tariff-item {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 28px;
-            padding: 32px 20px 28px;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-        }
-        .tariff-item:hover {
-            border-color: rgba(236, 72, 153, 0.1);
-            transform: translateY(-6px);
-            box-shadow: 0 12px 48px rgba(139, 92, 246, 0.05);
-        }
-
-        .tariff-item .price {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 38px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -1px;
-        }
-        .tariff-item .price span {
-            font-size: 18px;
-            font-weight: 400;
-            -webkit-text-fill-color: rgba(255, 255, 255, 0.2);
-        }
-        .tariff-item .desc {
-            color: rgba(255, 255, 255, 0.35);
-            font-size: 14px;
-            margin-top: 8px;
-            font-weight: 300;
-        }
-
-        /* ===== GALLERY ===== */
-        .gallery {
-            padding: 80px 0 70px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 28px;
-        }
-
-        .gallery-item {
-            aspect-ratio: 4 / 3;
-            border-radius: 28px;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.1);
-            font-weight: 300;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-        }
-        .gallery-item:hover {
-            transform: scale(1.02);
-            border-color: rgba(236, 72, 153, 0.08);
-            box-shadow: 0 12px 48px rgba(139, 92, 246, 0.04);
-        }
-        .gallery-item .placeholder-icon {
-            font-size: 48px;
-            opacity: 0.2;
-            margin-bottom: 8px;
-            filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.05));
-        }
-        .gallery-item .placeholder-text {
-            position: absolute;
-            bottom: 18px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
-            padding: 6px 20px;
-            border-radius: 60px;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-        }
+        /* ===== GALLERY (ИСПРАВЛЕНА ПОД 3 ФОТО) ===== */
+        .gallery { padding: 70px 0 60px; }
+        .gallery-wrapper { display: flex; gap: 20px; height: 500px; margin-top: 20px; }
+        .gallery-left { flex: 1.5; position: relative; border-radius: 18px; overflow: hidden; height: 100%; }
+        .gallery-right { flex: 1; display: flex; flex-direction: column; gap: 20px; height: 100%; }
+        .gallery-right .gallery-item { flex: 1; position: relative; border-radius: 18px; overflow: hidden; }
+        .gallery-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-label { position: absolute; bottom: 15px; left: 15px; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); padding: 6px 16px; border-radius: 50px; color: #fff; font-size: 14px; font-weight: 500; }
 
         /* ===== FOOTER ===== */
-        footer {
-            padding: 50px 0 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
-            text-align: center;
-            color: rgba(255, 255, 255, 0.12);
-            font-size: 14px;
-            font-weight: 300;
-            backdrop-filter: blur(8px);
-        }
-        footer .footer-logo {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 22px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 6px;
-        }
+        footer { padding: 40px 0 30px; border-top: 1px solid rgba(139, 92, 246, 0.06); text-align: center; color: rgba(255, 255, 255, 0.15); font-size: 14px; font-weight: 300; }
+        footer .footer-logo { font-size: 20px; font-weight: 700; background: linear-gradient(135deg, #ec4899, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .hall-grid {
-                grid-template-columns: repeat(5, 1fr);
-                gap: 16px;
-            }
-        }
-
-        @media (max-width: 820px) {
-            .hall-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 14px;
-            }
-            .hall-grid.ps-grid {
-                grid-template-columns: repeat(3, 1fr);
-                max-width: 100%;
-            }
-            .hall-grid.sim-grid {
-                max-width: 100%;
-            }
-        }
-
+        @media (max-width: 1024px) { .hall-grid { grid-template-columns: repeat(5, 1fr); gap: 14px; } }
+        @media (max-width: 820px) { .hall-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; } .hall-grid.ps-grid { grid-template-columns: repeat(3, 1fr); max-width: 100%; } .hall-grid.sim-grid { max-width: 100%; } }
         @media (max-width: 640px) {
-            .header-inner {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 12px;
-            }
-            .logo {
-                justify-content: center;
-                font-size: 22px;
-            }
-            .header-actions {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            .header-actions .btn-primary {
-                width: 100%;
-                text-align: center;
-                justify-content: center;
-            }
-
-            .hero {
-                padding: 60px 0 50px;
-                min-height: 60vh;
-            }
-            .hero h1 {
-                font-size: 36px;
-            }
-            .hero p {
-                font-size: 16px;
-            }
-
-            .about-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-            .about-item {
-                padding: 28px 16px 24px;
-            }
-            .about-item .count {
-                font-size: 32px;
-            }
-
-            /* Mobile: PC grid → 2 columns */
-            .hall-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 14px;
-            }
-            .hall-grid.ps-grid {
-                grid-template-columns: repeat(3, 1fr) !important;
-            }
-            .hall-grid.sim-grid {
-                grid-template-columns: 1fr !important;
-                max-width: 180px;
-                margin: 0 auto;
-            }
-
-            .card {
-                min-height: 120px;
-                padding: 18px 12px 16px;
-            }
-            .card .card-label {
-                font-size: 15px;
-            }
-            .card .card-icon {
-                font-size: 26px;
-            }
-            .card .status {
-                font-size: 10px;
-                padding: 4px 14px;
-            }
-
-            .tariffs-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-            .tariff-item .price {
-                font-size: 30px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
+            .header-inner { flex-direction: column; align-items: stretch; gap: 12px; }
+            .logo { justify-content: center; font-size: 22px; }
+            .header-actions { justify-content: center; flex-wrap: wrap; }
+            .header-actions .btn-primary { width: 100%; text-align: center; justify-content: center; }
+            .hero { padding: 50px 0 40px; }
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 16px; }
+            .about-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .about-item { padding: 24px 12px 20px; }
+            .about-item .count { font-size: 30px; }
+            .hall-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
+            .hall-grid.ps-grid { grid-template-columns: repeat(3, 1fr) !important; }
+            .hall-grid.sim-grid { grid-template-columns: 1fr !important; max-width: 180px; margin: 0 auto; }
+            .card { min-height: 100px; padding: 16px 10px 14px; }
+            .card .card-label { font-size: 15px; }
+            .card .card-icon { font-size: 22px; }
+            .card .status { font-size: 11px; padding: 3px 12px; }
+            .tariffs-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+            .tariff-item .price { font-size: 28px; }
+            
+            /* Фикс галереи для мобилок */
+            .gallery-wrapper { flex-direction: column; height: auto; }
+            .gallery-left { height: 300px; flex: none; }
+            .gallery-right { height: 250px; flex: none; flex-direction: row; }
+            .gallery-right .gallery-item { flex: 1; height: 100%; }
         }
-
         @media (max-width: 400px) {
-            .about-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-            }
-            .tariffs-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .gallery-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .hall-grid.ps-grid {
-                grid-template-columns: repeat(3, 1fr) !important;
-            }
+            .about-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .tariffs-grid { grid-template-columns: 1fr 1fr; }
+            .hall-grid.ps-grid { grid-template-columns: repeat(3, 1fr) !important; }
         }
+
+        /* ===== UTILITY ===== */
+        .glow-line { width: 80px; height: 3px; margin: 0 auto 30px; background: linear-gradient(90deg, transparent, #ec4899, #8b5cf6, transparent); border-radius: 4px; }
     </style>
 </head>
 <body>
-
-    <!-- ===== HEADER ===== -->
-    <header class="section-hidden" id="header">
+    <header>
         <div class="container header-inner">
-            <div class="logo">
-                <span class="logo-icon">⚡</span>
-                Progamer
-            </div>
-            <div class="header-actions">
-                <a href="#hall" class="btn-primary">🎮 Забронировать</a>
-            </div>
+            <div class="logo"><span class="logo-icon">⚡</span> Progamer</div>
+            <div class="header-actions"><a href="#hall" class="btn-primary">🎮 Забронировать</a></div>
         </div>
     </header>
 
-    <!-- ===== HERO with VIDEO BACKGROUND ===== -->
-    <section class="hero section-hidden" id="hero">
-        <!-- Видео-фон (замените src на реальный файл) -->
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="background.mp4" type="video/mp4" />
-            <!-- Заглушка, если видео не загрузится -->
-        </video>
-        <div class="hero-content">
+    <section class="hero">
+        <video autoplay loop muted playsinline class="hero-video"><source src="background.mp4" type="video/mp4"></video>
+        <div class="container hero-content">
             <div class="hero-badge">🔥 Открой свой киберпространство</div>
             <h1>ВЫБЕРИ СВОЕ МЕСТО</h1>
             <p>Мощные ПК, консоли последнего поколения и атмосфера настоящего киберспорта.</p>
@@ -814,8 +221,7 @@
         </div>
     </section>
 
-    <!-- ===== ABOUT ===== -->
-    <section class="about section-hidden" id="about">
+    <section class="about">
         <div class="container">
             <div class="section-header">
                 <div class="section-title">О клубе</div>
@@ -823,47 +229,28 @@
                 <div class="section-sub">Всё для твоей идеальной игровой сессии</div>
             </div>
             <div class="about-grid">
-                <div class="about-item glass">
-                    <div class="icon">🖥️</div>
-                    <div class="count">10</div>
-                    <div class="label">Игровых ПК</div>
-                </div>
-                <div class="about-item glass">
-                    <div class="icon">🎮</div>
-                    <div class="count">3</div>
-                    <div class="label">PS5</div>
-                </div>
-                <div class="about-item glass">
-                    <div class="icon">🏎️</div>
-                    <div class="count">1</div>
-                    <div class="label">Автосимулятор</div>
-                </div>
+                <div class="about-item"><div class="icon">🖥️</div><div class="count">10</div><div class="label">Игровых ПК</div></div>
+                <div class="about-item"><div class="icon">🎮</div><div class="count">3</div><div class="label">PS5</div></div>
+                <div class="about-item"><div class="icon">🏎️</div><div class="count">1</div><div class="label">Автосимулятор</div></div>
             </div>
         </div>
     </section>
 
-    <!-- ===== HALL SCHEME ===== -->
-    <section class="hall section-hidden" id="hall">
+    <section class="hall" id="hall">
         <div class="container">
             <div class="section-header">
                 <div class="section-title">Схема зала</div>
                 <div class="glow-line"></div>
                 <div class="section-sub">Нажми на свободное место, чтобы забронировать</div>
             </div>
-
-            <!-- PC -->
             <div class="hall-category">
                 <h3>🖥️ ПК <span>10 мест</span></h3>
                 <div class="hall-grid" id="pcGrid"></div>
             </div>
-
-            <!-- PS5 -->
             <div class="hall-category">
                 <h3>🎮 PS5 <span>3 места</span></h3>
                 <div class="hall-grid ps-grid" id="psGrid"></div>
             </div>
-
-            <!-- Simulator -->
             <div class="hall-category">
                 <h3>🏎️ Автосимулятор <span>1 место</span></h3>
                 <div class="hall-grid sim-grid" id="simGrid"></div>
@@ -871,8 +258,7 @@
         </div>
     </section>
 
-    <!-- ===== TARIFFS ===== -->
-    <section class="tariffs section-hidden" id="tariffs">
+    <section class="tariffs">
         <div class="container">
             <div class="section-header">
                 <div class="section-title">Тарифы</div>
@@ -880,202 +266,109 @@
                 <div class="section-sub">Выбери удобный формат</div>
             </div>
             <div class="tariffs-grid">
-                <div class="tariff-item glass">
-                    <div class="price">80 <span>₽</span></div>
-                    <div class="desc">1 час ПК</div>
-                </div>
-                <div class="tariff-item glass">
-                    <div class="price">100 <span>₽</span></div>
-                    <div class="desc">1 час PS5</div>
-                </div>
-                <div class="tariff-item glass">
-                    <div class="price">150 <span>₽</span></div>
-                    <div class="desc">1 час симулятор</div>
-                </div>
-                <div class="tariff-item glass">
-                    <div class="price">200 <span>₽</span></div>
-                    <div class="desc">2 часа ПК</div>
-                </div>
-                <div class="tariff-item glass">
-                    <div class="price">600 <span>₽</span></div>
-                    <div class="desc">Ночь (5 ч) ПК</div>
-                </div>
+                <div class="tariff-item"><div class="price">80 <span>₽</span></div><div class="desc">ПК (Утро 06:00-13:00)</div></div>
+                <div class="tariff-item"><div class="price">100 <span>₽</span></div><div class="desc">ПК (День 13:00-06:00)</div></div>
+                <div class="tariff-item"><div class="price">600 <span>₽</span></div><div class="desc">Ночной пакет (22:00-08:00)</div></div>
+                <div class="tariff-item"><div class="price">200 <span>₽</span></div><div class="desc">PS5 (до 4 человек)</div></div>
+                <div class="tariff-item"><div class="price">150 <span>₽</span></div><div class="desc">Автосимулятор</div></div>
             </div>
         </div>
     </section>
 
-    <!-- ===== GALLERY ===== -->
-    <section class="gallery section-hidden" id="gallery">
+    <section class="gallery">
         <div class="container">
             <div class="section-header">
                 <div class="section-title">Галерея</div>
                 <div class="glow-line"></div>
                 <div class="section-sub">Атмосфера нашего клуба</div>
             </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div style="display:flex;flex-direction:column;align-items:center;">
-                        <div class="placeholder-icon">🖥️</div>
-                        <span style="font-size:12px;color:rgba(255,255,255,0.08);">view1</span>
-                    </div>
-                    <div class="placeholder-text">Фото 1</div>
+            <!-- Исправлено ровно под 3 фотографии -->
+            <div class="gallery-wrapper">
+                <div class="gallery-left">
+                    <img src="view1.png" alt="Общий вид">
+                    <span class="gallery-label">Общий вид</span>
                 </div>
-                <div class="gallery-item">
-                    <div style="display:flex;flex-direction:column;align-items:center;">
-                        <div class="placeholder-icon">🎮</div>
-                        <span style="font-size:12px;color:rgba(255,255,255,0.08);">view2</span>
+                <div class="gallery-right">
+                    <div class="gallery-item">
+                        <img src="view2.png" alt="Пространство клуба">
+                        <span class="gallery-label">Пространство клуба</span>
                     </div>
-                    <div class="placeholder-text">Фото 2</div>
-                </div>
-                <div class="gallery-item">
-                    <div style="display:flex;flex-direction:column;align-items:center;">
-                        <div class="placeholder-icon">🏎️</div>
-                        <span style="font-size:12px;color:rgba(255,255,255,0.08);">view3</span>
+                    <div class="gallery-item">
+                        <img src="view3.png" alt="Пространство клуба">
+                        <span class="gallery-label">Пространство клуба</span>
                     </div>
-                    <div class="placeholder-text">Фото 3</div>
-                </div>
-                <div class="gallery-item">
-                    <div style="display:flex;flex-direction:column;align-items:center;">
-                        <div class="placeholder-icon">🛋️</div>
-                        <span style="font-size:12px;color:rgba(255,255,255,0.08);">view4</span>
-                    </div>
-                    <div class="placeholder-text">Фото 4</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="section-hidden">
+    <footer>
         <div class="container">
             <div class="footer-logo">⚡ Progamer</div>
             <p>© 2026 · ПК-клуб · Все права защищены</p>
         </div>
     </footer>
 
-    <!-- ============================================================ -->
-    <!-- ===== JAVASCRIPT (логика бронирования + анимации) ===== -->
     <script>
         (function() {
             'use strict';
-
-            // ----- ДАННЫЕ (не меняются) -----
             const pcData = [
-                { id: 'pc-1', label: 'ПК 1', icon: '🖥️' },
-                { id: 'pc-2', label: 'ПК 2', icon: '🖥️' },
-                { id: 'pc-3', label: 'ПК 3', icon: '🖥️' },
-                { id: 'pc-4', label: 'ПК 4', icon: '🖥️' },
-                { id: 'pc-5', label: 'ПК 5', icon: '🖥️' },
-                { id: 'pc-6', label: 'ПК 6', icon: '🖥️' },
-                { id: 'pc-7', label: 'ПК 7', icon: '🖥️' },
-                { id: 'pc-8', label: 'ПК 8', icon: '🖥️' },
-                { id: 'pc-9', label: 'ПК 9', icon: '🖥️' },
-                { id: 'pc-10', label: 'ПК 10', icon: '🖥️' }
+                { id: 'pc-1', label: 'ПК 1', icon: '🖥️' }, { id: 'pc-2', label: 'ПК 2', icon: '🖥️' },
+                { id: 'pc-3', label: 'ПК 3', icon: '🖥️' }, { id: 'pc-4', label: 'ПК 4', icon: '🖥️' },
+                { id: 'pc-5', label: 'ПК 5', icon: '🖥️' }, { id: 'pc-6', label: 'ПК 6', icon: '🖥️' },
+                { id: 'pc-7', label: 'ПК 7', icon: '🖥️' }, { id: 'pc-8', label: 'ПК 8', icon: '🖥️' },
+                { id: 'pc-9', label: 'ПК 9', icon: '🖥️' }, { id: 'pc-10', label: 'ПК 10', icon: '🖥️' }
             ];
-
             const psData = [
-                { id: 'ps-1', label: 'PS5 1', icon: '🎮' },
-                { id: 'ps-2', label: 'PS5 2', icon: '🎮' },
+                { id: 'ps-1', label: 'PS5 1', icon: '🎮' }, { id: 'ps-2', label: 'PS5 2', icon: '🎮' },
                 { id: 'ps-3', label: 'PS5 3', icon: '🎮' }
             ];
-
-            const simData = [
-                { id: 'sim-1', label: 'Руль', icon: '🏎️' }
-            ];
-
-            // ----- STATE -----
+            const simData = [ { id: 'sim-1', label: 'Руль', icon: '🏎️' } ];
             const state = {};
-
-            function initState(dataArray) {
-                dataArray.forEach(item => {
-                    state[item.id] = false;
-                });
-            }
-            initState(pcData);
-            initState(psData);
-            initState(simData);
-
-            // ----- РАНДОМАЙЗЕР: 30% занято -----
+            function initState(dataArray) { dataArray.forEach(item => { state[item.id] = false; }); }
+            initState(pcData); initState(psData); initState(simData);
             function randomizeOccupied(dataArray) {
-                const total = dataArray.length;
-                const count = Math.round(total * 0.3);
+                const total = dataArray.length; const count = Math.round(total * 0.3);
                 const shuffled = [...dataArray];
                 for (let i = shuffled.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
                 }
                 const selected = shuffled.slice(0, count);
-                selected.forEach(item => {
-                    state[item.id] = true;
-                });
+                selected.forEach(item => { state[item.id] = true; });
             }
-            randomizeOccupied(pcData);
-            randomizeOccupied(psData);
-            randomizeOccupied(simData);
-
-            // ----- RENDER CARDS -----
+            randomizeOccupied(pcData); randomizeOccupied(psData); randomizeOccupied(simData);
             function createCard(item, status) {
                 const card = document.createElement('div');
-                card.className = 'card';
-                card.dataset.id = item.id;
-
-                if (status) {
-                    card.classList.add('occupied');
-                } else {
-                    card.classList.add('free-card');
-                }
-
-                const iconSpan = document.createElement('div');
-                iconSpan.className = 'card-icon';
-                iconSpan.textContent = item.icon;
-
-                const labelSpan = document.createElement('div');
-                labelSpan.className = 'card-label';
-                labelSpan.textContent = item.label;
-
-                const subSpan = document.createElement('div');
-                subSpan.className = 'card-sub';
-                subSpan.textContent = status ? 'Занято' : 'Свободно';
-
-                const statusSpan = document.createElement('div');
-                statusSpan.className = 'status';
-                statusSpan.textContent = status ? 'ЗАНЯТО' : 'СВОБОДНО';
+                card.className = 'card'; card.dataset.id = item.id;
+                if (status) card.classList.add('occupied'); else card.classList.add('free-card');
+                const iconSpan = document.createElement('div'); iconSpan.className = 'card-icon'; iconSpan.textContent = item.icon;
+                const labelSpan = document.createElement('div'); labelSpan.className = 'card-label'; labelSpan.textContent = item.label;
+                const subSpan = document.createElement('div'); subSpan.className = 'card-sub'; subSpan.textContent = status ? 'Занято' : 'Свободно';
+                const statusSpan = document.createElement('div'); statusSpan.className = 'status'; statusSpan.textContent = status ? 'ЗАНЯТО' : 'СВОБОДНО';
                 statusSpan.classList.add(status ? 'occupied' : 'free');
-
-                card.appendChild(iconSpan);
-                card.appendChild(labelSpan);
-                card.appendChild(subSpan);
-                card.appendChild(statusSpan);
-
-                // Клик: свободная → занятая
+                card.appendChild(iconSpan); card.appendChild(labelSpan); card.appendChild(subSpan); card.appendChild(statusSpan);
                 card.addEventListener('click', function(e) {
                     const id = this.dataset.id;
                     if (state[id] === true) return;
                     state[id] = true;
                     updateCard(this, true);
                 });
-
                 return card;
             }
-
             function updateCard(cardElement, occupied) {
                 const statusSpan = cardElement.querySelector('.status');
                 const subSpan = cardElement.querySelector('.card-sub');
                 if (occupied) {
-                    cardElement.classList.remove('free-card');
-                    cardElement.classList.add('occupied');
-                    statusSpan.textContent = 'ЗАНЯТО';
-                    statusSpan.className = 'status occupied';
+                    cardElement.classList.remove('free-card'); cardElement.classList.add('occupied');
+                    statusSpan.textContent = 'ЗАНЯТО'; statusSpan.className = 'status occupied';
                     subSpan.textContent = 'Занято';
                 } else {
-                    cardElement.classList.remove('occupied');
-                    cardElement.classList.add('free-card');
-                    statusSpan.textContent = 'СВОБОДНО';
-                    statusSpan.className = 'status free';
+                    cardElement.classList.remove('occupied'); cardElement.classList.add('free-card');
+                    statusSpan.textContent = 'СВОБОДНО'; statusSpan.className = 'status free';
                     subSpan.textContent = 'Свободно';
                 }
             }
-
             function renderGrid(containerId, dataArray) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -1086,50 +379,8 @@
                     container.appendChild(card);
                 });
             }
-
-            renderGrid('pcGrid', pcData);
-            renderGrid('psGrid', psData);
-            renderGrid('simGrid', simData);
-
+            renderGrid('pcGrid', pcData); renderGrid('psGrid', psData); renderGrid('simGrid', simData);
             console.log('🔥 Progamer — схема зала загружена. 30% мест заняты случайно.');
-
-        })();
-    </script>
-
-    <!-- ===== INTERSECTION OBSERVER для анимаций ===== -->
-    <script>
-        (function() {
-            const sections = document.querySelectorAll('.section-hidden');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('section-visible');
-                        // Можно отключить наблюдение, чтобы не тратить ресурсы
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-
-            // Если нужно, чтобы header появился сразу, можно добавить класс вручную или наблюдать
-            // Заодно и герой появится сразу после загрузки (он виден)
-            // Но мы оставим наблюдатель, и если они уже видны, сработает.
-            // Также можно принудительно проверить сразу
-            setTimeout(() => {
-                sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        section.classList.add('section-visible');
-                        observer.unobserve(section);
-                    }
-                });
-            }, 100);
         })();
     </script>
 </body>
