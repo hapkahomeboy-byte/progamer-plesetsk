@@ -44,10 +44,8 @@
         }
         .header-inner { display: flex; align-items: center; justify-content: space-between; }
         .logo img {
-            height: 60px; /* Увеличили логотип */
-            width: auto;
-            display: block;
-            background: transparent !important; /* Убираем белые углы */
+            height: 60px; width: auto; display: block;
+            background: transparent !important;
         }
 
         .header-actions { display: flex; align-items: center; gap: 24px; }
@@ -193,7 +191,12 @@
         .tariff-subnote strong { color: #ec4899; }
 
         /* ===== GALLERY ===== */
-        .gallery-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; height: 500px; overflow: hidden; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 20px;
+            min-height: 500px;
+        }
         .gallery-item { position: relative; border-radius: 12px; overflow: hidden; background: #1a1a1e; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
         .gallery-item:hover img { transform: scale(1.03); }
@@ -204,17 +207,16 @@
         .gallery-right { display: flex; flex-direction: column; gap: 20px; height: 100%; }
         .gallery-right .gallery-item { flex: 1; }
 
-        /* ===== REVIEWS (ИСПРАВЛЕНО НАЛОЖЕНИЕ) ===== */
+        /* ===== REVIEWS (НАСТОЯЩЕЕ ИСПРАВЛЕНИЕ) ===== */
         #reviews {
-            padding-top: 100px; /* Отодвигаем весь блок от галереи */
+            padding-top: 80px;
             position: relative;
-            z-index: 10;
         }
         .reviews-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
-            margin-top: 40px; /* Отодвигаем карточки от заголовка */
+            margin-top: 40px;
         }
         .review-card { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; padding: 24px; transition: 0.3s; }
         .review-card:hover { background: rgba(255, 255, 255, 0.07); transform: translateY(-4px); }
@@ -317,13 +319,10 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
-        <!-- Вернули видео на фон -->
         <video autoplay loop muted playsinline class="hero-bg" poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200">
             <source src="background.mp4" type="video/mp4">
         </video>
-        <!-- Запасная картинка, если видео не загрузится -->
         <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" alt="Игровой клуб" class="hero-bg-fallback" style="display:none; position:absolute; top:0; left:0; width:100%; height:80vh; object-fit:cover; z-index:0;" />
-
         <div class="hero-overlay"></div>
 
         <div class="container hero-content">
@@ -466,7 +465,7 @@
         </div>
     </section>
 
-    <!-- ===== ОТЗЫВЫ (ТЕПЕРЬ ТОЧНО НА МЕСТЕ) ===== -->
+    <!-- ===== ОТЗЫВЫ ===== -->
     <section class="section" id="reviews">
         <div class="container">
             <div class="section-header">
