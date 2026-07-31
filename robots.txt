@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hapkahomeboy-byte.github.io/progamer-plesetsk/sitemap.xml

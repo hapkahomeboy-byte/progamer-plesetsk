@@ -8,6 +8,41 @@
     <meta property="og:title" content="Progamer — игровой клуб в Плесецке" />
     <meta property="og:description" content="Мощные ПК, PS5, автосимулятор. Работаем круглосуточно." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hapkahomeboy-byte.github.io/progamer-plesetsk/" />
+    <meta property="og:image" content="https://hapkahomeboy-byte.github.io/progamer-plesetsk/view1.png" />
+    <meta name="theme-color" content="#0e0e10" />
+    <link rel="canonical" href="https://hapkahomeboy-byte.github.io/progamer-plesetsk/" />
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+
+    <!-- ===== SCHEMA.ORG: помогает Яндексу/Google показывать расширенную карточку в поиске (часы, адрес, телефон, рейтинг) ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Progamer",
+        "image": "https://hapkahomeboy-byte.github.io/progamer-plesetsk/view1.png",
+        "url": "https://hapkahomeboy-byte.github.io/progamer-plesetsk/",
+        "telephone": "+7-911-068-77-68",
+        "priceRange": "80-600 ₽",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Беданова, 28А",
+            "addressLocality": "Плесецк",
+            "addressCountry": "RU"
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+        },
+        "sameAs": [
+            "https://t.me/progamer_plesetsk",
+            "https://vk.com/progamer_plesetsk"
+        ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -296,6 +331,25 @@
             .tariff-row .tariff-col:last-child { display: none; }
             .modal { padding: 24px; }
         }
+
+        /* ===== STICKY MOBILE CTA ===== */
+        .mobile-cta { display: none; }
+        @media (max-width: 767px) {
+            body { padding-bottom: 72px; }
+            .mobile-cta {
+                display: flex; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1500;
+                background: rgba(14, 14, 16, 0.97); backdrop-filter: blur(12px);
+                border-top: 1px solid rgba(139, 92, 246, 0.25);
+                padding: 10px 14px; gap: 10px;
+            }
+            .mobile-cta a, .mobile-cta button {
+                flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+                padding: 13px 10px; border-radius: 8px; font-weight: 700; font-size: 14px;
+                border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+            }
+            .mobile-cta .cta-call { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; }
+            .mobile-cta .cta-book { background: linear-gradient(135deg, #ec4899, #8b5cf6); color: #fff; }
+        }
     </style>
 </head>
 <body>
@@ -319,7 +373,8 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
-        <video autoplay loop muted playsinline class="hero-bg" poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200">
+        <video autoplay loop muted playsinline class="hero-bg" poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200"
+               onerror="this.style.display='none'; var f=document.querySelector('.hero-bg-fallback'); if(f) f.style.display='block';">
             <source src="background.mp4" type="video/mp4">
         </video>
         <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" alt="Игровой клуб" class="hero-bg-fallback" style="display:none; position:absolute; top:0; left:0; width:100%; height:80vh; object-fit:cover; z-index:0;" />
@@ -349,7 +404,7 @@
                 <span class="stat-label">Автосимулятор</span>
             </div>
             <div class="stat-item">
-                <span class="stat-label" style="color:#fff; font-weight:600;">Адрес</span>
+                <span class="addr">Адрес</span>
                 <span class="addr-sub">ул. Беданова, 28А</span>
             </div>
         </div>
@@ -398,12 +453,12 @@
             <div class="status-grid-wrapper">
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
                     <h3><i class="fas fa-circle" style="color:#4ade80;"></i> Текущая занятость</h3>
-                    <button class="btn-refresh" id="refreshStatusBtn"><i class="fas fa-sync-alt"></i> Обновить статусы</button>
+                    <button class="btn-refresh" id="refreshStatusBtn"><i class="fas fa-rotate-left"></i> Сбросить всё (сделать свободным)</button>
                 </div>
                 <div class="status-legend">
                     <span class="legend-free">Свободно</span>
                     <span class="legend-occupied">Занято</span>
-                    <span style="color:rgba(255,255,255,0.3);">(клик по свободному → занять)</span>
+                    <span style="color:rgba(255,255,255,0.3);">(клик по свободному → занять; статус обновляет администратор)</span>
                 </div>
                 <div id="pcGrid" class="status-grid"></div>
                 <div id="psGrid" class="status-grid ps-grid" style="margin-top:20px;"></div>
@@ -428,8 +483,8 @@
                 </div>
                 <div class="tariff-row">
                     <div class="tariff-col"><span>06:00–13:00</span><span class="price">80 ₽</span></div>
-                    <div class="tariff-col"><span>13:00–06:00</span><span class="price">100 ₽</span></div>
-                    <div class="tariff-col"><span>22:00–08:00</span><span class="price">600 ₽</span></div>
+                    <div class="tariff-col"><span>13:00–22:00</span><span class="price">100 ₽</span></div>
+                    <div class="tariff-col"><span>22:00–06:00</span><span class="price">600 ₽</span></div>
                     <div class="tariff-col"><span>1 час (до 4 чел)</span><span class="price">200 ₽</span></div>
                 </div>
                 <div class="tariff-subnote">
@@ -525,11 +580,16 @@
             <div class="social-footer">
                 <a href="https://t.me/progamer_plesetsk" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
                 <a href="https://vk.com/progamer_plesetsk" target="_blank" aria-label="VK"><i class="fab fa-vk"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
             <p>© 2026 Progamer · ПК-клуб в Плесецке · Все права защищены</p>
         </div>
     </footer>
+
+    <!-- ===== STICKY MOBILE CTA ===== -->
+    <div class="mobile-cta">
+        <a href="tel:+79110687768" class="cta-call"><i class="fas fa-phone-alt"></i> Позвонить</a>
+        <button class="cta-book" id="openModalBtn4">Забронировать</button>
+    </div>
 
     <!-- ===== МОДАЛЬНОЕ ОКНО БРОНИРОВАНИЯ ===== -->
     <div class="modal-overlay" id="bookingModal">
@@ -577,19 +637,30 @@
             const simData = [{ id: 'sim-1', label: 'Автосимулятор' }];
 
             const state = {};
+            const STATUS_KEY = 'progamer_status_v1';
 
             function initState(arr) { arr.forEach(item => state[item.id] = false); }
             initState(pcData); initState(psData); initState(simData);
 
-            function randomize(arr) {
-                const count = Math.round(arr.length * 0.3);
-                const shuffled = [...arr].sort(() => Math.random() - 0.5);
-                shuffled.slice(0, count).forEach(item => state[item.id] = true);
+            // Раньше тут была фейковая случайная генерация занятости при каждом клике
+            // "Обновить статусы" — то есть посетителю показывались случайные места как
+            // занятые/свободные без связи с реальностью. Теперь статус реальный:
+            // ставится вручную (клик по карточке) и сохраняется в этом браузере,
+            // чтобы не сбрасывался при обновлении страницы.
+            function loadState() {
+                try {
+                    const saved = JSON.parse(localStorage.getItem(STATUS_KEY) || '{}');
+                    Object.keys(state).forEach(key => { if (key in saved) state[key] = !!saved[key]; });
+                } catch (e) { /* localStorage недоступен — остаёмся на дефолте "всё свободно" */ }
             }
 
-            function setRandomStatus() {
+            function saveState() {
+                try { localStorage.setItem(STATUS_KEY, JSON.stringify(state)); } catch (e) {}
+            }
+
+            function resetAllFree() {
                 Object.keys(state).forEach(key => state[key] = false);
-                randomize(pcData); randomize(psData); randomize(simData);
+                saveState();
                 renderAll();
             }
 
@@ -614,6 +685,7 @@
                         const id = this.dataset.id;
                         if (state[id]) return;
                         state[id] = true;
+                        saveState();
                         this.className = 'status-card occupied';
                         this.querySelector('.card-status').textContent = 'ЗАНЯТО';
                     });
@@ -638,7 +710,7 @@
             }
 
             const modal = document.getElementById('bookingModal');
-            const openBtns = document.querySelectorAll('#openModalBtn, #openModalBtn2, #openModalBtn3');
+            const openBtns = document.querySelectorAll('#openModalBtn, #openModalBtn2, #openModalBtn3, #openModalBtn4');
             const closeBtn = document.getElementById('closeModalBtn');
 
             function openModal() { modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
@@ -648,21 +720,20 @@
             closeBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', function(e) { if (e.target === this) closeModal(); });
 
-            const BOT_TOKEN = '8994212475:AAFONvZnQyZrMkw2ZZ-beg2rJovC7wJqSmA';
-            const CHAT_ID = '8748250402';
+            // ВАЖНО: токен Telegram-бота НЕЛЬЗЯ хранить в коде страницы — этот файл
+            // открыт всем через "Просмотр кода" на GitHub Pages, и токен можно было
+            // просто скопировать. Заявки теперь отправляются на приватный прокси
+            // (например, бесплатный Cloudflare Worker), который сам знает токен —
+            // он никогда не попадает в браузер посетителя.
+            // Как подключить: см. файл worker.js и инструкцию, которые прилагаются
+            // к этому сайту. После деплоя вставьте сюда URL вашего Worker'а.
+            const BOOKING_ENDPOINT = 'https://ВАШ-WORKER-АДРЕС.workers.dev/send';
 
             async function sendToTelegram(name, phone, type, date, comment) {
-                const message = `📦 <b>Новая заявка на бронь!</b>\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n🖥 Тип: ${type}\n📅 Дата/Время: ${date || 'Не указано'}\n📝 Комментарий: ${comment || 'Нет'}`;
-                
-                const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-                const payload = {
-                    chat_id: CHAT_ID,
-                    text: message,
-                    parse_mode: 'HTML'
-                };
+                const payload = { name, phone, type, date, comment };
 
                 try {
-                    const response = await fetch(url, {
+                    const response = await fetch(BOOKING_ENDPOINT, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
@@ -671,11 +742,11 @@
                         alert('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
                         return true;
                     } else {
-                        alert('❌ Ошибка отправки. Проверьте токен бота или ID чата.');
+                        alert('❌ Ошибка отправки. Попробуйте ещё раз или позвоните нам напрямую.');
                         return false;
                     }
                 } catch (e) {
-                    alert('❌ Ошибка сети. Проверьте подключение к интернету.');
+                    alert('❌ Ошибка сети. Попробуйте ещё раз или позвоните нам напрямую.');
                     return false;
                 }
             }
@@ -699,8 +770,9 @@
                 form.reset();
             });
 
-            document.getElementById('refreshStatusBtn').addEventListener('click', setRandomStatus);
-            setRandomStatus();
+            document.getElementById('refreshStatusBtn').addEventListener('click', resetAllFree);
+            loadState();
+            renderAll();
 
             if ('IntersectionObserver' in window) {
                 const sections = document.querySelectorAll('.section');
