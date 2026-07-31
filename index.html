@@ -43,7 +43,12 @@
             padding: 14px 0; transition: background 0.3s;
         }
         .header-inner { display: flex; align-items: center; justify-content: space-between; }
-        .logo img { height: 40px; width: auto; display: block; }
+        .logo img {
+            height: 60px; /* Увеличили логотип */
+            width: auto;
+            display: block;
+            background: transparent !important; /* Убираем белые углы, если сам файл с прозрачностью */
+        }
 
         .header-actions { display: flex; align-items: center; gap: 24px; }
         .header-actions .phone {
@@ -65,6 +70,10 @@
         }
         .hero-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 80vh; object-fit: cover; z-index: 0;
+        }
+        .hero-bg-fallback {
+            position: absolute; top: 0; left: 0; width: 100%; height: 80vh; object-fit: cover; z-index: 0;
+            display: none;
         }
         .hero-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 80vh;
@@ -196,7 +205,12 @@
         .gallery-right .gallery-item { flex: 1; }
 
         /* ===== REVIEWS ===== */
-        .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px; /* ОТСТУП ОТ ГАЛЕРЕИ */
+        }
         .review-card { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; padding: 24px; transition: 0.3s; }
         .review-card:hover { background: rgba(255, 255, 255, 0.07); transform: translateY(-4px); }
         .review-card .review-name { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
@@ -283,7 +297,7 @@
     <header>
         <div class="container header-inner">
             <div class="logo">
-                <img src="logo.png" alt="Progamer" style="height:40px; width:auto;">
+                <img src="logo.png" alt="Progamer">
             </div>
             <div class="header-actions">
                 <a href="tel:+79110687768" class="phone"><i class="fas fa-phone-alt" style="margin-right:6px;"></i>+7 (911) 068-77-68</a>
@@ -298,7 +312,13 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
-        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" alt="Игровой клуб" class="hero-bg" />
+        <!-- Вернули видео на фон -->
+        <video autoplay loop muted playsinline class="hero-bg" poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200">
+            <source src="background.mp4" type="video/mp4">
+        </video>
+        <!-- Запасная картинка, если видео не загрузится -->
+        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" alt="Игровой клуб" class="hero-bg-fallback" style="display:none; position:absolute; top:0; left:0; width:100%; height:80vh; object-fit:cover; z-index:0;" />
+
         <div class="hero-overlay"></div>
 
         <div class="container hero-content">
@@ -489,7 +509,6 @@
                     <button class="btn-book" id="openModalBtn3" style="margin-top:12px; width:fit-content;">Забронировать онлайн</button>
                 </div>
                 <div class="map-container">
-                    <!-- Вставлена твоя Яндекс Карта, убраны жесткие ширины/высоты для адаптивности -->
                     <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A83786f0020e497e7d540561305de724f866c95b779ec417747ef318afc32bc01&amp;lang=ru_RU&amp;scroll=true"></script>
                 </div>
             </div>
@@ -549,7 +568,6 @@
         (function() {
             'use strict';
 
-            // --- Данные для карточек ---
             const pcData = Array.from({ length: 10 }, (_, i) => ({ id: `pc-${i+1}`, label: `ПК ${i+1}` }));
             const psData = Array.from({ length: 3 }, (_, i) => ({ id: `ps-${i+1}`, label: `PS5 ${i+1}` }));
             const simData = [{ id: 'sim-1', label: 'Автосимулятор' }];
@@ -571,7 +589,6 @@
                 renderAll();
             }
 
-            // --- Рендер карточек ---
             function createCard(item, status) {
                 const card = document.createElement('div');
                 card.className = 'status-card' + (status ? ' occupied' : ' free');
@@ -616,7 +633,6 @@
                 renderGrid('simGrid', simData);
             }
 
-            // --- Модальное окно ---
             const modal = document.getElementById('bookingModal');
             const openBtns = document.querySelectorAll('#openModalBtn, #openModalBtn2, #openModalBtn3');
             const closeBtn = document.getElementById('closeModalBtn');
@@ -628,7 +644,6 @@
             closeBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', function(e) { if (e.target === this) closeModal(); });
 
-            // --- ТВОЙ ТЕЛЕГРАМ БОТ (данные вставлены) ---
             const BOT_TOKEN = '8994212475:AAFONvZnQyZrMkw2ZZ-beg2rJovC7wJqSmA';
             const CHAT_ID = '8748250402';
 
