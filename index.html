@@ -46,8 +46,34 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" />
+
+    <!-- ===== ЯНДЕКС.МЕТРИКА =====
+         1. Зарегистрируйте счётчик на https://metrika.yandex.ru (бесплатно)
+         2. Замените 12345678 в строке "var YM_COUNTER_ID = 12345678;" ниже на ваш
+            реальный номер счётчика
+         3. В Метрике зайдите в Цели → создайте цель "JS-событие" с идентификатором booking_submit —
+            тогда в отчётах будет видно, сколько людей реально отправило заявку на бронь. -->
+    <script type="text/javascript">
+        var YM_COUNTER_ID = 12345678; // ← замените на номер вашего счётчика
+
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(YM_COUNTER_ID, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/12345678" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- ===== /ЯНДЕКС.МЕТРИКА ===== -->
 
     <style>
         /* ===== RESET & BASE ===== */
@@ -69,6 +95,14 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0e0e10; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ec4899, #8b5cf6); border-radius: 4px; }
+
+        /* ===== ACCESSIBILITY: SKIP LINK ===== */
+        .skip-link {
+            position: absolute; top: -100px; left: 12px; z-index: 3000;
+            background: #ec4899; color: #fff; padding: 12px 20px; border-radius: 4px;
+            font-weight: 700; font-size: 14px; transition: top 0.2s ease;
+        }
+        .skip-link:focus { top: 12px; }
 
         /* ===== HEADER ===== */
         header {
@@ -156,7 +190,7 @@
             font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -0.5px;
             background: linear-gradient(135deg, #ec4899, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .section-sub { color: rgba(255, 255, 255, 0.5); font-size: 16px; margin-top: 8px; }
+        .section-sub { color: rgba(255, 255, 255, 0.65); font-size: 16px; margin-top: 8px; }
 
         /* ===== HALLS ===== */
         .halls-list { display: flex; flex-direction: column; gap: 12px; }
@@ -189,6 +223,7 @@
             min-height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; user-select: none;
         }
         .status-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); }
+        .status-card:focus-visible { outline: 2px solid #ec4899; outline-offset: 3px; }
         .status-card .card-label { font-weight: 700; font-size: 15px; color: #fff; }
         .status-card .card-status {
             font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
@@ -201,7 +236,7 @@
         .status-card.occupied { cursor: default; opacity: 0.6; }
         .status-card.occupied:hover { transform: none; box-shadow: none; }
 
-        .status-legend { display: flex; gap: 24px; margin-bottom: 16px; font-size: 13px; color: rgba(255, 255, 255, 0.5); flex-wrap: wrap; }
+        .status-legend { display: flex; gap: 24px; margin-bottom: 16px; font-size: 13px; color: rgba(255, 255, 255, 0.65); flex-wrap: wrap; }
         .status-legend span::before { content: ''; display: inline-block; width: 12px; height: 12px; border-radius: 4px; margin-right: 8px; vertical-align: middle; }
         .status-legend .legend-free::before { background: #4ade80; }
         .status-legend .legend-occupied::before { background: #ec4899; }
@@ -256,7 +291,7 @@
         .review-card { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; padding: 24px; transition: 0.3s; }
         .review-card:hover { background: rgba(255, 255, 255, 0.07); transform: translateY(-4px); }
         .review-card .review-name { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
-        .review-card .review-meta { font-size: 13px; color: rgba(255, 255, 255, 0.4); margin-bottom: 12px; }
+        .review-card .review-meta { font-size: 13px; color: rgba(255, 255, 255, 0.55); margin-bottom: 12px; }
         .review-card .review-text { font-size: 15px; color: rgba(255, 255, 255, 0.75); line-height: 1.6; }
         .review-card .review-stars { color: #facc15; margin-bottom: 8px; }
 
@@ -277,7 +312,7 @@
         .modal-close { position: absolute; top: 16px; right: 20px; font-size: 28px; cursor: pointer; color: rgba(255, 255, 255, 0.4); transition: 0.3s; background: none; border: none; }
         .modal-close:hover { color: #ec4899; }
         .modal h2 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
-        .modal p { color: rgba(255, 255, 255, 0.5); margin-bottom: 24px; }
+        .modal p { color: rgba(255, 255, 255, 0.65); margin-bottom: 24px; }
         .form-group { margin-bottom: 18px; }
         .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; color: rgba(255, 255, 255, 0.7); }
         .form-group input, .form-group select, .form-group textarea {
@@ -354,6 +389,8 @@
 </head>
 <body>
 
+    <a href="#hero" class="skip-link">Перейти к содержимому</a>
+
     <!-- ===== HEADER ===== -->
     <header>
         <div class="container header-inner">
@@ -374,10 +411,11 @@
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
         <video autoplay loop muted playsinline class="hero-bg" poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200"
+               aria-hidden="true" tabindex="-1"
                onerror="this.style.display='none'; var f=document.querySelector('.hero-bg-fallback'); if(f) f.style.display='block';">
             <source src="background.mp4" type="video/mp4">
         </video>
-        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" alt="Игровой клуб" class="hero-bg-fallback" style="display:none; position:absolute; top:0; left:0; width:100%; height:80vh; object-fit:cover; z-index:0;" />
+        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" alt="" aria-hidden="true" class="hero-bg-fallback" style="display:none; position:absolute; top:0; left:0; width:100%; height:80vh; object-fit:cover; z-index:0;" />
         <div class="hero-overlay"></div>
 
         <div class="container hero-content">
@@ -458,7 +496,7 @@
                 <div class="status-legend">
                     <span class="legend-free">Свободно</span>
                     <span class="legend-occupied">Занято</span>
-                    <span style="color:rgba(255,255,255,0.3);">(клик по свободному → занять; статус обновляет администратор)</span>
+                    <span style="color:rgba(255,255,255,0.5);">(клик по свободному → занять; статус обновляет администратор)</span>
                 </div>
                 <div id="pcGrid" class="status-grid"></div>
                 <div id="psGrid" class="status-grid ps-grid" style="margin-top:20px;"></div>
@@ -503,16 +541,16 @@
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="view1.png" alt="Общий вид" />
+                    <img src="view1.png" alt="Общий вид" loading="lazy" decoding="async" />
                     <span class="gallery-label">Общий вид</span>
                 </div>
                 <div class="gallery-right">
                     <div class="gallery-item">
-                        <img src="view2.png" alt="Игровые места" />
+                        <img src="view2.png" alt="Игровые места" loading="lazy" decoding="async" />
                         <span class="gallery-label">Игровые места</span>
                     </div>
                     <div class="gallery-item">
-                        <img src="view3.png" alt="Зона PS5" />
+                        <img src="view3.png" alt="Зона PS5" loading="lazy" decoding="async" />
                         <span class="gallery-label">Зона PS5</span>
                     </div>
                 </div>
@@ -593,9 +631,9 @@
 
     <!-- ===== МОДАЛЬНОЕ ОКНО БРОНИРОВАНИЯ ===== -->
     <div class="modal-overlay" id="bookingModal">
-        <div class="modal">
-            <button class="modal-close" id="closeModalBtn">&times;</button>
-            <h2>Бронирование</h2>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+            <button class="modal-close" id="closeModalBtn" aria-label="Закрыть окно бронирования">&times;</button>
+            <h2 id="bookingModalTitle">Бронирование</h2>
             <p>Заполните форму, и мы свяжемся с вами в течение 5 минут.</p>
             <form id="bookingForm">
                 <div class="form-group">
@@ -631,6 +669,20 @@
     <script>
         (function() {
             'use strict';
+
+            // На мобильных отключаем автовоспроизведение фонового видео —
+            // это тяжёлый файл, который жрёт мобильный трафик и заряд батареи
+            // ради декоративного фона. Вместо этого показываем статичную картинку.
+            if (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) {
+                var heroVideo = document.querySelector('.hero-bg');
+                var heroFallback = document.querySelector('.hero-bg-fallback');
+                if (heroVideo) {
+                    heroVideo.pause();
+                    heroVideo.removeAttribute('autoplay');
+                    heroVideo.style.display = 'none';
+                }
+                if (heroFallback) heroFallback.style.display = 'block';
+            }
 
             const pcData = Array.from({ length: 10 }, (_, i) => ({ id: `pc-${i+1}`, label: `ПК ${i+1}` }));
             const psData = Array.from({ length: 3 }, (_, i) => ({ id: `ps-${i+1}`, label: `PS5 ${i+1}` }));
@@ -681,14 +733,27 @@
                 card.appendChild(statusEl);
 
                 if (!status) {
-                    card.addEventListener('click', function() {
-                        const id = this.dataset.id;
+                    card.setAttribute('role', 'button');
+                    card.setAttribute('tabindex', '0');
+                    card.setAttribute('aria-label', item.label + ': свободно. Нажмите, чтобы отметить как занято.');
+
+                    function occupy() {
+                        const id = card.dataset.id;
                         if (state[id]) return;
                         state[id] = true;
                         saveState();
-                        this.className = 'status-card occupied';
-                        this.querySelector('.card-status').textContent = 'ЗАНЯТО';
+                        card.className = 'status-card occupied';
+                        card.removeAttribute('role');
+                        card.removeAttribute('tabindex');
+                        card.setAttribute('aria-label', item.label + ': занято');
+                        card.querySelector('.card-status').textContent = 'ЗАНЯТО';
+                    }
+                    card.addEventListener('click', occupy);
+                    card.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); occupy(); }
                     });
+                } else {
+                    card.setAttribute('aria-label', item.label + ': занято');
                 }
                 return card;
             }
@@ -712,13 +777,27 @@
             const modal = document.getElementById('bookingModal');
             const openBtns = document.querySelectorAll('#openModalBtn, #openModalBtn2, #openModalBtn3, #openModalBtn4');
             const closeBtn = document.getElementById('closeModalBtn');
+            let lastFocusedEl = null;
 
-            function openModal() { modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
-            function closeModal() { modal.classList.remove('active'); document.body.style.overflow = ''; }
+            function openModal(e) {
+                lastFocusedEl = e && e.currentTarget ? e.currentTarget : document.activeElement;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                const firstField = document.getElementById('bookingName');
+                if (firstField) firstField.focus();
+            }
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') lastFocusedEl.focus();
+            }
 
             openBtns.forEach(btn => btn.addEventListener('click', openModal));
             closeBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+            });
 
             // ВАЖНО: токен Telegram-бота НЕЛЬЗЯ хранить в коде страницы — этот файл
             // открыт всем через "Просмотр кода" на GitHub Pages, и токен можно было
@@ -739,6 +818,9 @@
                         body: JSON.stringify(payload)
                     });
                     if (response.ok) {
+                        if (typeof ym === 'function') {
+                            try { ym(YM_COUNTER_ID, 'reachGoal', 'booking_submit'); } catch (e) {}
+                        }
                         alert('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
                         return true;
                     } else {
