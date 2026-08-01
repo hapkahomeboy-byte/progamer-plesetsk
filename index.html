@@ -806,7 +806,7 @@
             // он никогда не попадает в браузер посетителя.
             // Как подключить: см. файл worker.js и инструкцию, которые прилагаются
             // к этому сайту. После деплоя вставьте сюда URL вашего Worker'а.
-            const BOOKING_ENDPOINT = 'https://ВАШ-WORKER-АДРЕС.workers.dev/send';
+            const BOOKING_ENDPOINT = 'https://progamer-booking.workers.dev/send'; // ← замените на URL вашего Worker'а (шаг 5 в инструкции)
 
             async function sendToTelegram(name, phone, type, date, comment) {
                 const payload = { name, phone, type, date, comment };
