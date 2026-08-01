@@ -15,65 +15,10 @@
     <link rel="icon" type="image/png" href="logo.png" />
     <link rel="apple-touch-icon" href="logo.png" />
 
-    <!-- ===== SCHEMA.ORG: помогает Яндексу/Google показывать расширенную карточку в поиске (часы, адрес, телефон, рейтинг) ===== -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Progamer",
-        "image": "https://hapkahomeboy-byte.github.io/progamer-plesetsk/view1.png",
-        "url": "https://hapkahomeboy-byte.github.io/progamer-plesetsk/",
-        "telephone": "+7-911-068-77-68",
-        "priceRange": "80-600 ₽",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "ул. Беданова, 28А",
-            "addressLocality": "Плесецк",
-            "addressCountry": "RU"
-        },
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-            "opens": "00:00",
-            "closes": "23:59"
-        },
-        "sameAs": [
-            "https://t.me/progamer_plesetsk",
-            "https://vk.com/progamer_plesetsk"
-        ]
-    }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" />
-
-    <!-- ===== ЯНДЕКС.МЕТРИКА =====
-         1. Зарегистрируйте счётчик на https://metrika.yandex.ru (бесплатно)
-         2. Замените 12345678 в строке "var YM_COUNTER_ID = 12345678;" ниже на ваш
-            реальный номер счётчика
-         3. В Метрике зайдите в Цели → создайте цель "JS-событие" с идентификатором booking_submit —
-            тогда в отчётах будет видно, сколько людей реально отправило заявку на бронь. -->
-    <script type="text/javascript">
-        var YM_COUNTER_ID = 12345678; // ← замените на номер вашего счётчика
-
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        ym(YM_COUNTER_ID, "init", {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            webvisor: true
-        });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/12345678" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- ===== /ЯНДЕКС.МЕТРИКА ===== -->
 
     <style>
         /* ===== RESET & BASE ===== */
@@ -91,18 +36,9 @@
         img { display: block; max-width: 100%; height: auto; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-        /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0e0e10; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ec4899, #8b5cf6); border-radius: 4px; }
-
-        /* ===== ACCESSIBILITY: SKIP LINK ===== */
-        .skip-link {
-            position: absolute; top: -100px; left: 12px; z-index: 3000;
-            background: #ec4899; color: #fff; padding: 12px 20px; border-radius: 4px;
-            font-weight: 700; font-size: 14px; transition: top 0.2s ease;
-        }
-        .skip-link:focus { top: 12px; }
 
         /* ===== HEADER ===== */
         header {
@@ -112,92 +48,47 @@
             padding: 14px 0; transition: background 0.3s;
         }
         .header-inner { display: flex; align-items: center; justify-content: space-between; }
-        .logo img {
-            height: 60px; width: auto; display: block;
-            background: transparent !important;
-        }
+        .logo img { height: 60px; width: auto; display: block; }
 
-        .header-actions { display: flex; align-items: center; gap: 24px; }
-        .header-actions .phone {
-            color: rgba(255, 255, 255, 0.7); font-size: 15px; font-weight: 500; transition: color 0.3s;
-        }
-        .header-actions .phone:hover { color: #ec4899; }
+        .header-actions { display: flex; align-items: center; gap: 16px; }
+        .header-actions .phone { color: rgba(255, 255, 255, 0.7); font-size: 15px; font-weight: 500; }
         .header-actions .social-icons { display: flex; gap: 12px; font-size: 18px; color: rgba(255, 255, 255, 0.5); }
-        .header-actions .social-icons a:hover { color: #ec4899; }
-        .btn-book {
+        .header-actions .btn-auth {
+            background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px 20px; border-radius: 4px; font-weight: 700; font-size: 14px;
+            color: #fff; transition: 0.3s; cursor: pointer;
+        }
+        .header-actions .btn-auth:hover { background: rgba(255,255,255,0.2); }
+        .header-actions .btn-book {
             background: linear-gradient(135deg, #ec4899, #8b5cf6);
             padding: 10px 28px; border-radius: 4px; font-weight: 700; font-size: 14px;
-            transition: all 0.3s ease; border: none; cursor: pointer; color: #fff;
+            border: none; cursor: pointer; color: #fff; transition: 0.3s;
         }
-        .btn-book:hover { filter: brightness(1.15); box-shadow: 0 0 25px rgba(236, 72, 153, 0.4); transform: translateY(-2px); }
+        .header-actions .btn-book:hover { filter: brightness(1.15); box-shadow: 0 0 25px rgba(236, 72, 153, 0.4); transform: translateY(-2px); }
 
         /* ===== HERO ===== */
-        .hero {
-            position: relative; min-height: 100vh; display: flex; flex-direction: column; padding-top: 80px;
-        }
-        .hero-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 80vh; object-fit: cover; z-index: 0;
-        }
-        .hero-bg-fallback {
-            position: absolute; top: 0; left: 0; width: 100%; height: 80vh; object-fit: cover; z-index: 0;
-            display: none;
-        }
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 80vh;
-            background: linear-gradient(90deg, rgba(14, 14, 16, 0.85) 0%, rgba(14, 14, 16, 0.4) 100%);
-            z-index: 1;
-        }
-        .hero-content {
-            position: relative; z-index: 2; padding-top: 140px; padding-bottom: 40px;
-            flex: 1; display: flex; flex-direction: column; justify-content: center;
-        }
-        .hero-badge {
-            color: #ec4899; font-weight: 600; letter-spacing: 1.5px; font-size: 13px; text-transform: uppercase; margin-bottom: 10px;
-        }
-        .hero h1 {
-            font-size: clamp(44px, 6.5vw, 82px); font-weight: 800; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px;
-        }
+        .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; padding-top: 80px; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 80vh; object-fit: cover; z-index: 0; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 80vh; background: linear-gradient(90deg, rgba(14, 14, 16, 0.85) 0%, rgba(14, 14, 16, 0.4) 100%); z-index: 1; }
+        .hero-content { position: relative; z-index: 2; padding-top: 140px; padding-bottom: 40px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .hero-badge { color: #ec4899; font-weight: 600; letter-spacing: 1.5px; font-size: 13px; text-transform: uppercase; margin-bottom: 10px; }
+        .hero h1 { font-size: clamp(44px, 6.5vw, 82px); font-weight: 800; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
         .hero h1 span { color: #ec4899; }
-        .hero p {
-            font-size: 18px; color: rgba(255, 255, 255, 0.7); max-width: 520px; margin-bottom: 32px; line-height: 1.6;
-        }
+        .hero p { font-size: 18px; color: rgba(255, 255, 255, 0.7); max-width: 520px; margin-bottom: 32px; line-height: 1.6; }
         .hero-buttons { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-        .hero-buttons .btn-main {
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            padding: 14px 36px; border-radius: 4px; font-weight: 700; font-size: 16px;
-            border: none; cursor: pointer; transition: all 0.3s; color: #fff;
-        }
+        .hero-buttons .btn-main { background: linear-gradient(135deg, #ec4899, #8b5cf6); padding: 14px 36px; border-radius: 4px; font-weight: 700; font-size: 16px; border: none; cursor: pointer; transition: all 0.3s; color: #fff; }
         .hero-buttons .btn-main:hover { filter: brightness(1.15); box-shadow: 0 0 30px rgba(236, 72, 153, 0.4); transform: translateY(-3px); }
         .hero-buttons .phone-hero { color: rgba(255, 255, 255, 0.8); font-size: 18px; font-weight: 500; }
-
-        /* ===== HERO STATS ===== */
-        .hero-stats {
-            position: relative; z-index: 2; margin-top: auto;
-            background: rgba(255, 255, 255, 0.03); border-top: 1px solid rgba(255, 255, 255, 0.06); border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            display: grid; grid-template-columns: repeat(4, 1fr); padding: 20px 0;
-        }
-        .stat-item { text-align: center; border-right: 1px solid rgba(255, 255, 255, 0.06); padding: 0 12px; }
-        .stat-item:last-child { border-right: none; }
-        .stat-number { font-size: 34px; font-weight: 800; color: #ec4899; display: block; line-height: 1.2; }
-        .stat-label { font-size: 13px; color: rgba(255, 255, 255, 0.5); display: block; margin-top: 2px; }
-        .stat-item .addr { font-size: 15px; color: #fff; font-weight: 600; display: block; margin-top: 4px; }
-        .stat-item .addr-sub { font-size: 12px; color: rgba(255, 255, 255, 0.4); display: block; }
 
         /* ===== SECTIONS ===== */
         .section { padding: 80px 0; }
         .section-header { text-align: center; margin-bottom: 56px; }
-        .section-title {
-            font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #ec4899, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
+        .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, #ec4899, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .section-sub { color: rgba(255, 255, 255, 0.65); font-size: 16px; margin-top: 8px; }
 
-        /* ===== HALLS ===== */
+        /* ===== HALLS & CONFIGS ===== */
         .halls-list { display: flex; flex-direction: column; gap: 12px; }
-        .hall-row {
-            display: grid; grid-template-columns: 40px 1fr 80px 3fr 2fr;
-            align-items: center; padding: 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
+        .hall-row { display: grid; grid-template-columns: 40px 1fr 80px 3fr 2fr; align-items: center; padding: 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
         .hall-row:last-child { border-bottom: none; }
         .hall-id { color: #ec4899; font-weight: 700; font-size: 14px; }
         .hall-name { font-size: 20px; font-weight: 700; }
@@ -210,7 +101,7 @@
         .hall-devices span::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; background: #8b5cf6; border-radius: 50%; }
         .hall-row.ps5-row .hall-specs .spec-item strong { color: #8b5cf6; }
 
-        /* ===== STATUS GRID ===== */
+        /* ===== STATUS GRID (ДИНАМИЧЕСКИЙ ИЗ БАЗЫ) ===== */
         .status-grid-wrapper { margin-top: 48px; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 40px; }
         .status-grid-wrapper h3 { margin-bottom: 16px; font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 12px; }
         .status-grid-wrapper h3 i { color: #ec4899; }
@@ -223,12 +114,8 @@
             min-height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; user-select: none;
         }
         .status-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); }
-        .status-card:focus-visible { outline: 2px solid #ec4899; outline-offset: 3px; }
         .status-card .card-label { font-weight: 700; font-size: 15px; color: #fff; }
-        .status-card .card-status {
-            font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
-            padding: 3px 12px; border-radius: 50px; margin-top: 4px;
-        }
+        .status-card .card-status { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 12px; border-radius: 50px; margin-top: 4px; }
         .status-card.free { border-color: rgba(74, 222, 128, 0.2); }
         .status-card.free .card-status { color: #4ade80; background: rgba(74, 222, 128, 0.1); }
         .status-card.occupied { border-color: rgba(236, 72, 153, 0.3); }
@@ -236,76 +123,31 @@
         .status-card.occupied { cursor: default; opacity: 0.6; }
         .status-card.occupied:hover { transform: none; box-shadow: none; }
 
-        .status-legend { display: flex; gap: 24px; margin-bottom: 16px; font-size: 13px; color: rgba(255, 255, 255, 0.65); flex-wrap: wrap; }
-        .status-legend span::before { content: ''; display: inline-block; width: 12px; height: 12px; border-radius: 4px; margin-right: 8px; vertical-align: middle; }
-        .status-legend .legend-free::before { background: #4ade80; }
-        .status-legend .legend-occupied::before { background: #ec4899; }
-        .btn-refresh {
-            background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff; padding: 8px 20px; border-radius: 4px; font-size: 13px;
-            cursor: pointer; transition: 0.3s; margin-top: 12px;
-        }
-        .btn-refresh:hover { background: rgba(255, 255, 255, 0.12); }
-
         /* ===== TARIFFS ===== */
         .tariffs-table { border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; overflow: hidden; }
         .tariffs-header { display: grid; grid-template-columns: repeat(4, 1fr); background: linear-gradient(135deg, #ec4899, #8b5cf6); color: #fff; }
         .tariffs-header div { padding: 16px 20px; font-weight: 700; font-size: 18px; border-right: 1px solid rgba(255, 255, 255, 0.1); }
-        .tariffs-header div:last-child { border-right: none; }
         .tariff-row { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .tariff-row:last-child { border-bottom: none; }
         .tariff-col { padding: 14px 20px; display: flex; justify-content: space-between; border-right: 1px solid rgba(255, 255, 255, 0.05); font-size: 14px; color: rgba(255, 255, 255, 0.7); }
-        .tariff-col:last-child { border-right: none; }
         .tariff-col .price { color: #fff; font-weight: 600; }
         .tariff-subnote { padding: 16px 20px; background: rgba(139, 92, 246, 0.08); color: rgba(255, 255, 255, 0.7); font-size: 14px; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: center; }
-        .tariff-subnote strong { color: #ec4899; }
 
         /* ===== GALLERY ===== */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 20px;
-            min-height: 500px;
-        }
+        .gallery-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; min-height: 500px; }
         .gallery-item { position: relative; border-radius: 12px; overflow: hidden; background: #1a1a1e; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
         .gallery-item:hover img { transform: scale(1.03); }
-        .gallery-item .gallery-label {
-            position: absolute; bottom: 16px; left: 16px;
-            background: rgba(0, 0, 0, 0.7); padding: 6px 16px; border-radius: 4px; font-size: 13px; font-weight: 600; backdrop-filter: blur(4px);
-        }
+        .gallery-item .gallery-label { position: absolute; bottom: 16px; left: 16px; background: rgba(0, 0, 0, 0.7); padding: 6px 16px; border-radius: 4px; font-size: 13px; font-weight: 600; backdrop-filter: blur(4px); }
         .gallery-right { display: flex; flex-direction: column; gap: 20px; height: 100%; }
         .gallery-right .gallery-item { flex: 1; }
 
-        /* ===== REVIEWS (НАСТОЯЩЕЕ ИСПРАВЛЕНИЕ) ===== */
-        #reviews {
-            padding-top: 80px;
-            position: relative;
-        }
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 40px;
-        }
-        .review-card { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; padding: 24px; transition: 0.3s; }
-        .review-card:hover { background: rgba(255, 255, 255, 0.07); transform: translateY(-4px); }
-        .review-card .review-name { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
-        .review-card .review-meta { font-size: 13px; color: rgba(255, 255, 255, 0.55); margin-bottom: 12px; }
-        .review-card .review-text { font-size: 15px; color: rgba(255, 255, 255, 0.75); line-height: 1.6; }
-        .review-card .review-stars { color: #facc15; margin-bottom: 8px; }
+        /* ===== FOOTER ===== */
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 14px; color: rgba(255, 255, 255, 0.2); }
+        footer .social-footer { display: flex; justify-content: center; gap: 20px; margin-bottom: 16px; font-size: 22px; }
+        footer .social-footer a { color: rgba(255, 255, 255, 0.3); transition: 0.3s; }
+        footer .social-footer a:hover { color: #ec4899; }
 
-        /* ===== CONTACT / MAP ===== */
-        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .contact-info { display: flex; flex-direction: column; gap: 20px; }
-        .contact-info h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
-        .contact-info .contact-item { display: flex; align-items: center; gap: 16px; font-size: 16px; color: rgba(255, 255, 255, 0.8); }
-        .contact-info .contact-item i { width: 24px; color: #ec4899; font-size: 20px; }
-        .contact-info .contact-item a { color: #fff; transition: color 0.3s; }
-        .contact-info .contact-item a:hover { color: #ec4899; }
-        .map-container { border-radius: 12px; overflow: hidden; height: 100%; min-height: 300px; background: #1a1a1e; }
-
-        /* ===== MODAL ===== */
+        /* ===== MODALS ===== */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); z-index: 2000; justify-content: center; align-items: center; }
         .modal-overlay.active { display: flex; }
         .modal { background: #1a1a1e; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 40px; max-width: 540px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; }
@@ -315,94 +157,46 @@
         .modal p { color: rgba(255, 255, 255, 0.65); margin-bottom: 24px; }
         .form-group { margin-bottom: 18px; }
         .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; color: rgba(255, 255, 255, 0.7); }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; color: #fff; font-size: 15px; transition: 0.3s; font-family: 'Inter', sans-serif;
-        }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #ec4899; box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.2); }
-        .form-group textarea { resize: vertical; min-height: 80px; }
-        .form-group select option { background: #1a1a1e; }
+        .form-group input, .form-group select { width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; color: #fff; font-size: 15px; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: #ec4899; box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.2); }
         .btn-submit { background: linear-gradient(135deg, #ec4899, #8b5cf6); width: 100%; padding: 14px; border: none; border-radius: 8px; font-weight: 700; font-size: 16px; color: #fff; cursor: pointer; transition: 0.3s; }
         .btn-submit:hover { filter: brightness(1.15); box-shadow: 0 0 25px rgba(236, 72, 153, 0.4); }
 
-        /* ===== FOOTER ===== */
-        footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 14px; color: rgba(255, 255, 255, 0.2); }
-        footer .social-footer { display: flex; justify-content: center; gap: 20px; margin-bottom: 16px; font-size: 22px; }
-        footer .social-footer a { color: rgba(255, 255, 255, 0.3); transition: 0.3s; }
-        footer .social-footer a:hover { color: #ec4899; }
-
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .hero-stats { grid-template-columns: repeat(2, 1fr); }
-            .stat-item:nth-child(2) { border-right: none; }
-            .reviews-grid { grid-template-columns: 1fr 1fr; }
-            .contact-wrapper { grid-template-columns: 1fr; }
-        }
         @media (max-width: 820px) {
             .hall-row { grid-template-columns: 40px 1fr; row-gap: 8px; }
             .hall-id, .hall-name, .hall-seats { grid-column: 1 / 3; }
             .hall-seats { text-align: left; margin-bottom: 6px; }
             .hall-specs, .hall-devices { grid-column: 1 / 3; }
             .tariffs-header, .tariff-row { grid-template-columns: 1fr 1fr; }
-            .tariffs-header div:nth-child(3), .tariffs-header div:nth-child(4) { display: none; }
-            .tariff-row .tariff-col:nth-child(3), .tariff-row .tariff-col:nth-child(4) { display: none; }
-            .gallery-grid { grid-template-columns: 1fr; height: auto; }
-            .gallery-right { flex-direction: row; height: 250px; }
-            .gallery-right .gallery-item { flex: 1; }
             .status-grid { grid-template-columns: repeat(3, 1fr); }
             .status-grid.ps-grid { grid-template-columns: repeat(3, 1fr); max-width: 100%; }
-            .reviews-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; height: auto; }
+            .gallery-right { flex-direction: row; height: 250px; }
         }
         @media (max-width: 640px) {
             .header-inner { flex-direction: column; align-items: stretch; gap: 12px; }
             .header-actions { justify-content: center; flex-wrap: wrap; gap: 12px; }
             .header-actions .phone { display: none; }
             .hero-stats { grid-template-columns: 1fr 1fr; padding: 16px 0; }
-            .stat-item { padding: 6px 0; }
             .status-grid { grid-template-columns: repeat(2, 1fr); }
             .status-grid.ps-grid { grid-template-columns: repeat(2, 1fr); }
-            .tariffs-header, .tariff-row { grid-template-columns: 1fr; }
-            .tariffs-header div:last-child { display: none; }
-            .tariff-row .tariff-col:last-child { display: none; }
-            .modal { padding: 24px; }
-        }
-
-        /* ===== STICKY MOBILE CTA ===== */
-        .mobile-cta { display: none; }
-        @media (max-width: 767px) {
-            body { padding-bottom: 72px; }
-            .mobile-cta {
-                display: flex; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1500;
-                background: rgba(14, 14, 16, 0.97); backdrop-filter: blur(12px);
-                border-top: 1px solid rgba(139, 92, 246, 0.25);
-                padding: 10px 14px; gap: 10px;
-            }
-            .mobile-cta a, .mobile-cta button {
-                flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
-                padding: 13px 10px; border-radius: 8px; font-weight: 700; font-size: 14px;
-                border: none; cursor: pointer; font-family: 'Inter', sans-serif;
-            }
-            .mobile-cta .cta-call { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; }
-            .mobile-cta .cta-book { background: linear-gradient(135deg, #ec4899, #8b5cf6); color: #fff; }
         }
     </style>
 </head>
 <body>
 
-    <a href="#hero" class="skip-link">Перейти к содержимому</a>
-
     <!-- ===== HEADER ===== -->
     <header>
         <div class="container header-inner">
-            <div class="logo">
-                <img src="logo.png" alt="Progamer">
-            </div>
+            <div class="logo"><img src="logo.png" alt="Progamer"></div>
             <div class="header-actions">
                 <a href="tel:+79110687768" class="phone"><i class="fas fa-phone-alt" style="margin-right:6px;"></i>+7 (911) 068-77-68</a>
                 <div class="social-icons">
-                    <a href="https://t.me/progamer_plesetsk" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-                    <a href="https://vk.com/progamer_plesetsk" target="_blank" aria-label="VK"><i class="fab fa-vk"></i></a>
+                    <a href="https://t.me/progamer_plesetsk" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://vk.com/progamer_plesetsk" target="_blank"><i class="fab fa-vk"></i></a>
                 </div>
+                <button id="authBtn" class="btn-auth">Войти</button>
                 <button class="btn-book" id="openModalBtn">Забронировать</button>
             </div>
         </div>
@@ -410,14 +204,10 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
-        <video autoplay loop muted playsinline class="hero-bg" poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200"
-               aria-hidden="true" tabindex="-1"
-               onerror="this.style.display='none'; var f=document.querySelector('.hero-bg-fallback'); if(f) f.style.display='block';">
+        <video autoplay loop muted playsinline class="hero-bg" poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200">
             <source src="background.mp4" type="video/mp4">
         </video>
-        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" alt="" aria-hidden="true" class="hero-bg-fallback" style="display:none; position:absolute; top:0; left:0; width:100%; height:80vh; object-fit:cover; z-index:0;" />
         <div class="hero-overlay"></div>
-
         <div class="container hero-content">
             <div class="hero-badge">Плесецк • Круглосуточно</div>
             <h1>Progamer,<br /><span>Плесецк</span></h1>
@@ -427,34 +217,18 @@
                 <a href="tel:+79110687768" class="phone-hero"><i class="fas fa-phone-alt"></i> +7 (911) 068-77-68</a>
             </div>
         </div>
-
         <div class="hero-stats">
-            <div class="stat-item">
-                <span class="stat-number">10</span>
-                <span class="stat-label">Игровых ПК</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">3</span>
-                <span class="stat-label">PlayStation 5</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">1</span>
-                <span class="stat-label">Автосимулятор</span>
-            </div>
-            <div class="stat-item">
-                <span class="addr">Адрес</span>
-                <span class="addr-sub">ул. Беданова, 28А</span>
-            </div>
+            <div class="stat-item"><span class="stat-number">10</span><span class="stat-label">Игровых ПК</span></div>
+            <div class="stat-item"><span class="stat-number">3</span><span class="stat-label">PlayStation 5</span></div>
+            <div class="stat-item"><span class="stat-number">1</span><span class="stat-label">Автосимулятор</span></div>
+            <div class="stat-item"><span class="addr">Адрес</span><span class="addr-sub">ул. Беданова, 28А</span></div>
         </div>
     </section>
 
-    <!-- ===== ЗАЛЫ И КОМПЛЕКТАЦИЯ ===== -->
+    <!-- ===== ЗАЛЫ ===== -->
     <section class="section" id="halls">
         <div class="container">
-            <div class="section-header">
-                <div class="section-title">Залы и комплектация</div>
-                <div class="section-sub">10 мощных ПК и уютная зона для вашей компании</div>
-            </div>
+            <div class="section-header"><div class="section-title">Залы и комплектация</div><div class="section-sub">10 мощных ПК и уютная зона для вашей компании</div></div>
             <div class="halls-list">
                 <div class="hall-row">
                     <div class="hall-id">01</div>
@@ -467,36 +241,22 @@
                         <div class="spec-item"><strong>SSD</strong> 512 ГБ</div>
                         <div class="spec-item"><strong>Монитор</strong> 24" 165 Гц</div>
                     </div>
-                    <div class="hall-devices">
-                        <span>Клавиатура / Мышь</span>
-                        <span>Гарнитура / Кресло</span>
-                        <span>Интернет >100 Мбит</span>
-                    </div>
+                    <div class="hall-devices"><span>Клавиатура / Мышь</span><span>Гарнитура / Кресло</span><span>Интернет >100 Мбит</span></div>
                 </div>
                 <div class="hall-row ps5-row">
                     <div class="hall-id">02</div>
                     <div class="hall-name">Зона PS5</div>
                     <div class="hall-seats">3 места</div>
-                    <div class="hall-specs">
-                        <div class="spec-item"><strong>Консоль</strong> PlayStation 5</div>
-                        <div class="spec-item"><strong>Экран</strong> 4K HDR</div>
-                    </div>
-                    <div class="hall-devices">
-                        <span>До 4 человек за сессию</span>
-                        <span>Контроллеры DualSense</span>
-                    </div>
+                    <div class="hall-specs"><div class="spec-item"><strong>Консоль</strong> PlayStation 5</div><div class="spec-item"><strong>Экран</strong> 4K HDR</div></div>
+                    <div class="hall-devices"><span>До 4 человек за сессию</span><span>Контроллеры DualSense</span></div>
                 </div>
             </div>
 
+            <!-- ===== СХЕМА ЗАЛА ИЗ БАЗЫ ===== -->
             <div class="status-grid-wrapper">
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
                     <h3><i class="fas fa-circle" style="color:#4ade80;"></i> Текущая занятость</h3>
-                    <button class="btn-refresh" id="refreshStatusBtn"><i class="fas fa-rotate-left"></i> Сбросить всё (сделать свободным)</button>
-                </div>
-                <div class="status-legend">
-                    <span class="legend-free">Свободно</span>
-                    <span class="legend-occupied">Занято</span>
-                    <span style="color:rgba(255,255,255,0.5);">(клик по свободному → занять; статус обновляет администратор)</span>
+                    <button class="btn-auth" id="refreshBtn" style="margin-top:0;">Обновить</button>
                 </div>
                 <div id="pcGrid" class="status-grid"></div>
                 <div id="psGrid" class="status-grid ps-grid" style="margin-top:20px;"></div>
@@ -508,26 +268,16 @@
     <!-- ===== ТАРИФЫ ===== -->
     <section class="section" id="tariffs">
         <div class="container">
-            <div class="section-header">
-                <div class="section-title">Тарифы клуба</div>
-                <div class="section-sub">Стоимость игры в час</div>
-            </div>
+            <div class="section-header"><div class="section-title">Тарифы клуба</div><div class="section-sub">Стоимость игры в час</div></div>
             <div class="tariffs-table">
-                <div class="tariffs-header">
-                    <div>ПК (Утро)</div>
-                    <div>ПК (День)</div>
-                    <div>ПК (Ночь)</div>
-                    <div>PS5</div>
-                </div>
+                <div class="tariffs-header"><div>ПК (Утро)</div><div>ПК (День)</div><div>ПК (Ночь)</div><div>PS5</div></div>
                 <div class="tariff-row">
                     <div class="tariff-col"><span>06:00–13:00</span><span class="price">80 ₽</span></div>
                     <div class="tariff-col"><span>13:00–22:00</span><span class="price">100 ₽</span></div>
                     <div class="tariff-col"><span>22:00–06:00</span><span class="price">600 ₽</span></div>
                     <div class="tariff-col"><span>1 час (до 4 чел)</span><span class="price">200 ₽</span></div>
                 </div>
-                <div class="tariff-subnote">
-                    Автосимулятор — <strong>150 ₽/час</strong> · Бронь действует 15 минут после оплаты.
-                </div>
+                <div class="tariff-subnote">Автосимулятор — <strong>150 ₽/час</strong> · Бронь действует 15 минут после оплаты.</div>
             </div>
         </div>
     </section>
@@ -535,347 +285,395 @@
     <!-- ===== ГАЛЕРЕЯ ===== -->
     <section class="section" id="gallery">
         <div class="container">
-            <div class="section-header">
-                <div class="section-title">Галерея</div>
-                <div class="section-sub">Атмосфера клуба</div>
-            </div>
+            <div class="section-header"><div class="section-title">Галерея</div><div class="section-sub">Атмосфера клуба</div></div>
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="view1.png" alt="Общий вид" loading="lazy" decoding="async" />
-                    <span class="gallery-label">Общий вид</span>
-                </div>
+                <div class="gallery-item"><img src="view1.png" alt="Общий вид" loading="lazy" /><span class="gallery-label">Общий вид</span></div>
                 <div class="gallery-right">
-                    <div class="gallery-item">
-                        <img src="view2.png" alt="Игровые места" loading="lazy" decoding="async" />
-                        <span class="gallery-label">Игровые места</span>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="view3.png" alt="Зона PS5" loading="lazy" decoding="async" />
-                        <span class="gallery-label">Зона PS5</span>
-                    </div>
+                    <div class="gallery-item"><img src="view2.png" alt="Игровые места" loading="lazy" /><span class="gallery-label">Игровые места</span></div>
+                    <div class="gallery-item"><img src="view3.png" alt="Зона PS5" loading="lazy" /><span class="gallery-label">Зона PS5</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== ОТЗЫВЫ ===== -->
-    <section class="section" id="reviews">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-title">Отзывы</div>
-                <div class="section-sub">Что говорят наши гости</div>
-            </div>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="review-name">Алексей</div>
-                    <div class="review-meta">⭐ 5.0 · 12.03.2025</div>
-                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <div class="review-text">«Отличный клуб! ПК мощные, мониторы 165 Гц — глаз радуется. Персонал вежливый, помогли настроить всё. Обязательно приду ещё!»</div>
+    <!-- ===== МОДАЛЬНОЕ ОКНО БРОНИРОВАНИЯ ===== -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal">
+            <button class="modal-close" id="closeBookingBtn">&times;</button>
+            <h2>Забронировать место</h2>
+            <p>Выберите дату и время, чтобы забронировать станцию.</p>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="bookingStation">Выбранная станция</label>
+                    <input type="text" id="bookingStation" readonly style="background: rgba(255,255,255,0.03); color:#aaa; cursor:default;" />
                 </div>
-                <div class="review-card">
-                    <div class="review-name">Мария</div>
-                    <div class="review-meta">⭐ 5.0 · 05.03.2025</div>
-                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <div class="review-text">«Приятная атмосфера, уютно. PS5 — огонь! Играли вчетвером, все остались довольны. Цены адекватные. Рекомендую.»</div>
+                <div class="form-group">
+                    <label for="bookingDate">Дата</label>
+                    <input type="date" id="bookingDate" required />
                 </div>
-                <div class="review-card">
-                    <div class="review-name">Дмитрий</div>
-                    <div class="review-meta">⭐ 4.8 · 22.02.2025</div>
-                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                    <div class="review-text">«Был в ночную смену — тихо, никто не мешает. Интернет летает. Единственное — хотелось бы больше снеков в автомате. В остальном супер!»</div>
+                <div class="form-group">
+                    <label for="bookingStart">Время начала</label>
+                    <input type="time" id="bookingStart" required />
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="bookingDuration">Длительность</label>
+                    <select id="bookingDuration">
+                        <option value="1">1 час</option>
+                        <option value="2">2 часа</option>
+                        <option value="3">3 часа</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit"><i class="fas fa-check-circle"></i> Забронировать</button>
+            </form>
         </div>
-    </section>
+    </div>
 
-    <!-- ===== КОНТАКТЫ И КАРТА ===== -->
-    <section class="section" id="contacts">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-title">Контакты</div>
-                <div class="section-sub">Как нас найти и связаться</div>
-            </div>
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h3>Progamer</h3>
-                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Плесецк, ул. Беданова, 28А</div>
-                    <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+79110687768">+7 (911) 068-77-68</a></div>
-                    <div class="contact-item"><i class="fab fa-telegram-plane"></i> <a href="https://t.me/progamer_plesetsk" target="_blank">@progamer_plesetsk</a></div>
-                    <div class="contact-item"><i class="fab fa-vk"></i> <a href="https://vk.com/progamer_plesetsk" target="_blank">vk.com/progamer_plesetsk</a></div>
-                    <div class="contact-item"><i class="fas fa-clock"></i> Круглосуточно, без выходных</div>
-                    <button class="btn-book" id="openModalBtn3" style="margin-top:12px; width:fit-content;">Забронировать онлайн</button>
+    <!-- ===== МОДАЛЬНОЕ ОКНО АВТОРИЗАЦИИ ===== -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal">
+            <button class="modal-close" id="closeAuthBtn">&times;</button>
+            <h2 id="authTitle">Вход в личный кабинет</h2>
+            <p id="authDesc">Войдите, чтобы бронировать места и управлять бронями.</p>
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="authEmail">Email</label>
+                    <input type="email" id="authEmail" placeholder="mail@example.com" required />
                 </div>
-                <div class="map-container">
-                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A83786f0020e497e7d540561305de724f866c95b779ec417747ef318afc32bc01&amp;lang=ru_RU&amp;scroll=true"></script>
+                <div class="form-group">
+                    <label for="authPassword">Пароль</label>
+                    <input type="password" id="authPassword" placeholder="••••••••" required />
                 </div>
+                <button type="submit" class="btn-submit" id="authSubmitBtn">Войти</button>
+                <div style="margin-top:16px; text-align:center; font-size:14px; color:rgba(255,255,255,0.4);">
+                    Нет аккаунта? <a href="#" id="switchAuthMode" style="color:#ec4899; text-decoration:underline;">Зарегистрироваться</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО ПРОФИЛЯ ===== -->
+    <div class="modal-overlay" id="profileModal">
+        <div class="modal" style="max-width: 640px;">
+            <button class="modal-close" id="closeProfileBtn">&times;</button>
+            <h2>Мой кабинет</h2>
+            <div id="profileContent">
+                <div style="text-align:center; padding:20px; color:rgba(255,255,255,0.5);">Загрузка ваших броней...</div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- ===== FOOTER ===== -->
     <footer>
         <div class="container">
             <div class="social-footer">
-                <a href="https://t.me/progamer_plesetsk" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-                <a href="https://vk.com/progamer_plesetsk" target="_blank" aria-label="VK"><i class="fab fa-vk"></i></a>
+                <a href="https://t.me/progamer_plesetsk" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://vk.com/progamer_plesetsk" target="_blank"><i class="fab fa-vk"></i></a>
             </div>
             <p>© 2026 Progamer · ПК-клуб в Плесецке · Все права защищены</p>
         </div>
     </footer>
 
-    <!-- ===== STICKY MOBILE CTA ===== -->
-    <div class="mobile-cta">
-        <a href="tel:+79110687768" class="cta-call"><i class="fas fa-phone-alt"></i> Позвонить</a>
-        <button class="cta-book" id="openModalBtn4">Забронировать</button>
-    </div>
 
-    <!-- ===== МОДАЛЬНОЕ ОКНО БРОНИРОВАНИЯ ===== -->
-    <div class="modal-overlay" id="bookingModal">
-        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
-            <button class="modal-close" id="closeModalBtn" aria-label="Закрыть окно бронирования">&times;</button>
-            <h2 id="bookingModalTitle">Бронирование</h2>
-            <p>Заполните форму, и мы свяжемся с вами в течение 5 минут.</p>
-            <form id="bookingForm">
-                <div class="form-group">
-                    <label for="bookingName">Ваше имя *</label>
-                    <input type="text" id="bookingName" placeholder="Иван" required />
-                </div>
-                <div class="form-group">
-                    <label for="bookingPhone">Телефон *</label>
-                    <input type="tel" id="bookingPhone" placeholder="+7 (XXX) XXX-XX-XX" required />
-                </div>
-                <div class="form-group">
-                    <label for="bookingType">Что бронируем?</label>
-                    <select id="bookingType">
-                        <option value="pc">Игровой ПК</option>
-                        <option value="ps5">PlayStation 5</option>
-                        <option value="sim">Автосимулятор</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="bookingDate">Дата и время</label>
-                    <input type="datetime-local" id="bookingDate" />
-                </div>
-                <div class="form-group">
-                    <label for="bookingComment">Комментарий</label>
-                    <textarea id="bookingComment" placeholder="Дополнительные пожелания..."></textarea>
-                </div>
-                <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Отправить заявку</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- ===== JAVASCRIPT ===== -->
+    <!-- ===== SUPABASE CONNECTION ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        (function() {
-            'use strict';
+        // ===========================
+        // 1. ПОДКЛЮЧЕНИЕ К БАЗЕ ДАННЫХ
+        // ===========================
+        const SUPABASE_URL = 'https://wqmkakfpioldhezwpsbp.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_i4xLrm-li1fAeR9Q-6NkRA_XuVUTLNY';
+        const supabase = supabaseJs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-            // На мобильных отключаем автовоспроизведение фонового видео —
-            // это тяжёлый файл, который жрёт мобильный трафик и заряд батареи
-            // ради декоративного фона. Вместо этого показываем статичную картинку.
-            if (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) {
-                var heroVideo = document.querySelector('.hero-bg');
-                var heroFallback = document.querySelector('.hero-bg-fallback');
-                if (heroVideo) {
-                    heroVideo.pause();
-                    heroVideo.removeAttribute('autoplay');
-                    heroVideo.style.display = 'none';
-                }
-                if (heroFallback) heroFallback.style.display = 'block';
+        // ===========================
+        // 2. СОСТОЯНИЕ И ЭЛЕМЕНТЫ
+        // ===========================
+        let currentUser = null;
+        let isLoginMode = true;
+        const authBtn = document.getElementById('authBtn');
+        const authModal = document.getElementById('authModal');
+        const authTitle = document.getElementById('authTitle');
+        const authDesc = document.getElementById('authDesc');
+        const authForm = document.getElementById('authForm');
+        const authSubmitBtn = document.getElementById('authSubmitBtn');
+        const switchAuthMode = document.getElementById('switchAuthMode');
+        const closeAuthBtn = document.getElementById('closeAuthBtn');
+
+        const bookingModal = document.getElementById('bookingModal');
+        const closeBookingBtn = document.getElementById('closeBookingBtn');
+        const bookingForm = document.getElementById('bookingForm');
+        const bookingStation = document.getElementById('bookingStation');
+        let selectedStationId = null;
+
+        const profileModal = document.getElementById('profileModal');
+        const profileContent = document.getElementById('profileContent');
+        const closeProfileBtn = document.getElementById('closeProfileBtn');
+
+        // ===========================
+        // 3. ФУНКЦИИ АВТОРИЗАЦИИ
+        // ===========================
+        async function checkUser() {
+            const { data: { user } } = await supabase.auth.getUser();
+            currentUser = user;
+            updateUI(user);
+        }
+
+        function updateUI(user) {
+            if (user) {
+                authBtn.innerHTML = `Профиль ${user.email}`;
+                authBtn.onclick = () => openModal('profileModal');
+                document.querySelectorAll('.btn-book, .btn-main').forEach(btn => btn.style.display = 'inline-block');
+            } else {
+                authBtn.textContent = 'Войти';
+                authBtn.onclick = () => openModal('authModal');
+                document.querySelectorAll('.btn-book, .btn-main').forEach(btn => btn.style.display = 'inline-block');
+            }
+        }
+
+        async function handleAuth(e) {
+            e.preventDefault();
+            const email = document.getElementById('authEmail').value.trim();
+            const password = document.getElementById('authPassword').value.trim();
+            if (!email || !password) return;
+
+            authSubmitBtn.disabled = true;
+            authSubmitBtn.textContent = 'Пожалуйста, подождите...';
+
+            let result;
+            if (isLoginMode) {
+                result = await supabase.auth.signInWithPassword({ email, password });
+            } else {
+                result = await supabase.auth.signUp({ email, password });
             }
 
-            const pcData = Array.from({ length: 10 }, (_, i) => ({ id: `pc-${i+1}`, label: `ПК ${i+1}` }));
-            const psData = Array.from({ length: 3 }, (_, i) => ({ id: `ps-${i+1}`, label: `PS5 ${i+1}` }));
-            const simData = [{ id: 'sim-1', label: 'Автосимулятор' }];
+            authSubmitBtn.disabled = false;
+            authSubmitBtn.textContent = isLoginMode ? 'Войти' : 'Зарегистрироваться';
 
-            const state = {};
-            const STATUS_KEY = 'progamer_status_v1';
+            if (result.error) {
+                alert('Ошибка: ' + result.error.message);
+            } else {
+                closeModal('authModal');
+                await checkUser();
+                authForm.reset();
+            }
+        }
 
-            function initState(arr) { arr.forEach(item => state[item.id] = false); }
-            initState(pcData); initState(psData); initState(simData);
+        // ===========================
+        // 4. УПРАВЛЕНИЕ МОДАЛЬНЫМИ ОКНАМИ
+        // ===========================
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        // Обработчики закрытия
+        [closeAuthBtn, closeBookingBtn, closeProfileBtn].forEach(btn => {
+            btn.onclick = () => closeModal(btn.closest('.modal-overlay').id);
+        });
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if(e.target === overlay) closeModal(overlay.id);
+            });
+        });
 
-            // Раньше тут была фейковая случайная генерация занятости при каждом клике
-            // "Обновить статусы" — то есть посетителю показывались случайные места как
-            // занятые/свободные без связи с реальностью. Теперь статус реальный:
-            // ставится вручную (клик по карточке) и сохраняется в этом браузере,
-            // чтобы не сбрасывался при обновлении страницы.
-            function loadState() {
-                try {
-                    const saved = JSON.parse(localStorage.getItem(STATUS_KEY) || '{}');
-                    Object.keys(state).forEach(key => { if (key in saved) state[key] = !!saved[key]; });
-                } catch (e) { /* localStorage недоступен — остаёмся на дефолте "всё свободно" */ }
+        // ===========================
+        // 5. ЗАГРУЗКА И ОТРИСОВКА ЗАЛА (СУПАБЕЙС)
+        // ===========================
+        async function loadStations() {
+            const { data: stations, error } = await supabase.from('stations').select('*');
+            if (error) {
+                console.error('Ошибка загрузки станций:', error);
+                return;
             }
 
-            function saveState() {
-                try { localStorage.setItem(STATUS_KEY, JSON.stringify(state)); } catch (e) {}
-            }
+            const pcGrid = document.getElementById('pcGrid');
+            const psGrid = document.getElementById('psGrid');
+            const simGrid = document.getElementById('simGrid');
+            pcGrid.innerHTML = ''; psGrid.innerHTML = ''; simGrid.innerHTML = '';
 
-            function resetAllFree() {
-                Object.keys(state).forEach(key => state[key] = false);
-                saveState();
-                renderAll();
-            }
+            // Сначала проверим, какие станции заняты в данный момент (статус в БД будет формироваться по броням)
+            const now = new Date().toISOString();
+            const { data: activeBookings } = await supabase
+                .from('bookings')
+                .select('station_id')
+                .gte('end_time', now)
+                .in('status', ['pending', 'confirmed']);
+            
+            const occupiedIds = new Set(activeBookings?.map(b => b.station_id) || []);
 
-            function createCard(item, status) {
+            stations.forEach(station => {
                 const card = document.createElement('div');
-                card.className = 'status-card' + (status ? ' occupied' : ' free');
-                card.dataset.id = item.id;
-
-                const label = document.createElement('div');
-                label.className = 'card-label';
-                label.textContent = item.label;
-
-                const statusEl = document.createElement('div');
-                statusEl.className = 'card-status';
-                statusEl.textContent = status ? 'ЗАНЯТО' : 'СВОБОДНО';
-
-                card.appendChild(label);
-                card.appendChild(statusEl);
-
-                if (!status) {
-                    card.setAttribute('role', 'button');
-                    card.setAttribute('tabindex', '0');
-                    card.setAttribute('aria-label', item.label + ': свободно. Нажмите, чтобы отметить как занято.');
-
-                    function occupy() {
-                        const id = card.dataset.id;
-                        if (state[id]) return;
-                        state[id] = true;
-                        saveState();
-                        card.className = 'status-card occupied';
-                        card.removeAttribute('role');
-                        card.removeAttribute('tabindex');
-                        card.setAttribute('aria-label', item.label + ': занято');
-                        card.querySelector('.card-status').textContent = 'ЗАНЯТО';
-                    }
-                    card.addEventListener('click', occupy);
-                    card.addEventListener('keydown', function(e) {
-                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); occupy(); }
+                const isOccupied = occupiedIds.has(station.id);
+                card.className = 'status-card' + (isOccupied ? ' occupied' : ' free');
+                card.innerHTML = `
+                    <div class="card-label">${station.label}</div>
+                    <div class="card-status">${isOccupied ? 'ЗАНЯТО' : 'СВОБОДНО'}</div>
+                `;
+                if (!isOccupied) {
+                    card.addEventListener('click', () => {
+                        if (!currentUser) {
+                            alert('Пожалуйста, войдите в аккаунт, чтобы забронировать место.');
+                            openModal('authModal');
+                            return;
+                        }
+                        selectedStationId = station.id;
+                        bookingStation.value = station.label;
+                        openModal('bookingModal');
                     });
+                }
+                if (station.type === 'pc') pcGrid.appendChild(card);
+                else if (station.type === 'ps5') psGrid.appendChild(card);
+                else if (station.type === 'sim') simGrid.appendChild(card);
+            });
+        }
+
+        // ===========================
+        // 6. ЛОГИКА БРОНИРОВАНИЯ
+        // ===========================
+        bookingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const date = document.getElementById('bookingDate').value;
+            const startTime = document.getElementById('bookingStart').value;
+            const duration = parseInt(document.getElementById('bookingDuration').value);
+            
+            if (!date || !startTime) {
+                alert('Выберите дату и время.');
+                return;
+            }
+
+            const start = new Date(`${date}T${startTime}:00`);
+            const end = new Date(start.getTime() + duration * 60 * 60 * 1000);
+
+            const { error } = await supabase.from('bookings').insert({
+                user_id: currentUser.id,
+                station_id: selectedStationId,
+                start_time: start.toISOString(),
+                end_time: end.toISOString(),
+                status: 'pending'
+            });
+
+            closeModal('bookingModal');
+            if (error) {
+                if (error.code === '23P01') { // Ошибка пересечения времени от базы данных
+                    alert('Ошибка: Это время уже занято! Выберите другое.');
                 } else {
-                    card.setAttribute('aria-label', item.label + ': занято');
+                    alert('Ошибка бронирования: ' + error.message);
                 }
-                return card;
+            } else {
+                alert('✅ Бронь успешно создана! Статус: Ожидает подтверждения.');
+                loadStations();
+                bookingForm.reset();
+            }
+        });
+
+        // ===========================
+        // 7. ПРОФИЛЬ (ЛИЧНЫЙ КАБИНЕТ)
+        // ===========================
+        async function loadProfile() {
+            if (!currentUser) return;
+            profileContent.innerHTML = '<div style="text-align:center; color:rgba(255,255,255,0.5);">Загрузка броней...</div>';
+            
+            const { data: bookings, error } = await supabase
+                .from('bookings')
+                .select('*, stations(label)')
+                .eq('user_id', currentUser.id)
+                .order('start_time', { ascending: true });
+
+            if (error) {
+                profileContent.innerHTML = `<div style="text-align:center; color:#ec4899;">Ошибка загрузки: ${error.message}</div>`;
+                return;
             }
 
-            function renderGrid(containerId, dataArr) {
-                const container = document.getElementById(containerId);
-                if (!container) return;
-                container.innerHTML = '';
-                dataArr.forEach(item => {
-                    const card = createCard(item, state[item.id]);
-                    container.appendChild(card);
-                });
+            if (!bookings || bookings.length === 0) {
+                profileContent.innerHTML = `<div style="text-align:center; color:rgba(255,255,255,0.5);">У вас пока нет активных броней.</div>`;
+                return;
             }
 
-            function renderAll() {
-                renderGrid('pcGrid', pcData);
-                renderGrid('psGrid', psData);
-                renderGrid('simGrid', simData);
-            }
-
-            const modal = document.getElementById('bookingModal');
-            const openBtns = document.querySelectorAll('#openModalBtn, #openModalBtn2, #openModalBtn3, #openModalBtn4');
-            const closeBtn = document.getElementById('closeModalBtn');
-            let lastFocusedEl = null;
-
-            function openModal(e) {
-                lastFocusedEl = e && e.currentTarget ? e.currentTarget : document.activeElement;
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                const firstField = document.getElementById('bookingName');
-                if (firstField) firstField.focus();
-            }
-            function closeModal() {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-                if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') lastFocusedEl.focus();
-            }
-
-            openBtns.forEach(btn => btn.addEventListener('click', openModal));
-            closeBtn.addEventListener('click', closeModal);
-            modal.addEventListener('click', function(e) { if (e.target === this) closeModal(); });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+            let html = '<div style="display:flex; flex-direction:column; gap:16px;">';
+            bookings.forEach(b => {
+                const start = new Date(b.start_time).toLocaleString('ru');
+                const end = new Date(b.end_time).toLocaleString('ru');
+                html += `
+                    <div style="background:rgba(255,255,255,0.04); border-radius:12px; padding:16px; border:1px solid rgba(255,255,255,0.06);">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <div>
+                                <div style="font-weight:600;">${b.stations.label}</div>
+                                <div style="font-size:14px; color:rgba(255,255,255,0.5);">${start} — ${end}</div>
+                                <div style="font-size:12px; margin-top:4px; color:${b.status === 'cancelled' ? '#ec4899' : '#4ade80'};">
+                                    Статус: ${b.status === 'pending' ? 'Ожидает' : b.status === 'confirmed' ? 'Подтверждена' : 'Отменена'}
+                                </div>
+                            </div>
+                            ${b.status !== 'cancelled' ? `
+                                <button onclick="cancelBooking('${b.id}')" style="background:rgba(236,72,153,0.1); border:1px solid rgba(236,72,153,0.3); padding:8px 16px; border-radius:4px; color:#ec4899; cursor:pointer; font-weight:600; transition:0.3s;">
+                                    Отменить
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
             });
+            html += '</div>';
+            profileContent.innerHTML = html;
+        }
 
-            // ВАЖНО: токен Telegram-бота НЕЛЬЗЯ хранить в коде страницы — этот файл
-            // открыт всем через "Просмотр кода" на GitHub Pages, и токен можно было
-            // просто скопировать. Заявки теперь отправляются на приватный прокси
-            // (например, бесплатный Cloudflare Worker), который сам знает токен —
-            // он никогда не попадает в браузер посетителя.
-            // Как подключить: см. файл worker.js и инструкцию, которые прилагаются
-            // к этому сайту. После деплоя вставьте сюда URL вашего Worker'а.
-            const BOOKING_ENDPOINT = 'https://progamer-booking.hapkahomeboy.workers.dev/send';
-
-            async function sendToTelegram(name, phone, type, date, comment) {
-                const payload = { name, phone, type, date, comment };
-
-                try {
-                    const response = await fetch(BOOKING_ENDPOINT, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (response.ok) {
-                        if (typeof ym === 'function') {
-                            try { ym(YM_COUNTER_ID, 'reachGoal', 'booking_submit'); } catch (e) {}
-                        }
-                        alert('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-                        return true;
-                    } else {
-                        alert('❌ Ошибка отправки. Попробуйте ещё раз или позвоните нам напрямую.');
-                        return false;
-                    }
-                } catch (e) {
-                    alert('❌ Ошибка сети. Попробуйте ещё раз или позвоните нам напрямую.');
-                    return false;
-                }
+        window.cancelBooking = async function(bookingId) {
+            if (!confirm('Вы уверены, что хотите отменить бронь?')) return;
+            const { error } = await supabase.from('bookings')
+                .update({ status: 'cancelled' })
+                .eq('id', bookingId);
+            
+            if (error) {
+                alert('Ошибка отмены: ' + error.message);
+            } else {
+                loadProfile();
+                loadStations();
             }
+        }
 
-            const form = document.getElementById('bookingForm');
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const name = document.getElementById('bookingName').value.trim();
-                const phone = document.getElementById('bookingPhone').value.trim();
-                const type = document.getElementById('bookingType').value;
-                const date = document.getElementById('bookingDate').value;
-                const comment = document.getElementById('bookingComment').value.trim();
+        // ===========================
+        // 8. ОБРАБОТЧИКИ СОБЫТИЙ
+        // ===========================
+        // Переключение входа/регистрации
+        switchAuthMode.addEventListener('click', (e) => {
+            e.preventDefault();
+            isLoginMode = !isLoginMode;
+            authTitle.textContent = isLoginMode ? 'Вход в личный кабинет' : 'Регистрация';
+            authDesc.textContent = isLoginMode ? 'Войдите, чтобы бронировать места.' : 'Создайте аккаунт, чтобы бронировать места.';
+            authSubmitBtn.textContent = isLoginMode ? 'Войти' : 'Зарегистрироваться';
+        });
+        authForm.addEventListener('submit', handleAuth);
 
-                if (!name || !phone) {
-                    alert('Пожалуйста, заполните имя и телефон.');
-                    return;
+        // Кнопки открытия бронирования
+        document.querySelectorAll('#openModalBtn, #openModalBtn2').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (!currentUser) {
+                    alert('Пожалуйста, войдите в аккаунт для бронирования.');
+                    openModal('authModal');
+                } else {
+                    alert('Выберите свободную станцию в схеме зала, чтобы забронировать её.');
                 }
-
-                sendToTelegram(name, phone, type, date, comment);
-                closeModal();
-                form.reset();
             });
+        });
 
-            document.getElementById('refreshStatusBtn').addEventListener('click', resetAllFree);
-            loadState();
-            renderAll();
+        // Открытие профиля
+        document.getElementById('profileModal').addEventListener('click', (e) => {
+            if(e.target === profileModal) closeModal('profileModal');
+        });
+        document.getElementById('profileModal').addEventListener('transitionend', () => {
+            if(profileModal.classList.contains('active')) loadProfile();
+        });
 
-            if ('IntersectionObserver' in window) {
-                const sections = document.querySelectorAll('.section');
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }
-                    });
-                }, { threshold: 0.1 });
-                sections.forEach(section => {
-                    section.style.opacity = '0';
-                    section.style.transform = 'translateY(30px)';
-                    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    observer.observe(section);
-                });
-            }
+        // Обновление зала
+        document.getElementById('refreshBtn').addEventListener('click', loadStations);
 
-        })();
+        // ===========================
+        // 9. СТАРТ
+        // ===========================
+        checkUser();
+        loadStations();
+        console.log('🔥 Progamer сервис с Supabase запущен!');
     </script>
-
 </body>
 </html>
