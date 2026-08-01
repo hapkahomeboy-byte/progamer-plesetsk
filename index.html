@@ -19,6 +19,57 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" />
+
+    <!-- ===== SCHEMA.ORG: расширенная карточка в поиске (часы, адрес, телефон) ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Progamer",
+        "image": "https://hapkahomeboy-byte.github.io/progamer-plesetsk/view1.png",
+        "url": "https://hapkahomeboy-byte.github.io/progamer-plesetsk/",
+        "telephone": "+7-911-068-77-68",
+        "priceRange": "80-600 ₽",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Беданова, 28А",
+            "addressLocality": "Плесецк",
+            "addressCountry": "RU"
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+        },
+        "sameAs": [
+            "https://t.me/progamer_plesetsk",
+            "https://vk.com/progamer_plesetsk"
+        ]
+    }
+    </script>
+
+    <!-- ===== ЯНДЕКС.МЕТРИКА =====
+         Замените 12345678 (в двух местах ниже) на номер вашего счётчика с metrika.yandex.ru -->
+    <script type="text/javascript">
+        var YM_COUNTER_ID = 12345678; // ← замените на номер вашего счётчика
+
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(YM_COUNTER_ID, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/12345678" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- ===== /ЯНДЕКС.МЕТРИКА ===== -->
 
     <style>
         /* ===== RESET & BASE ===== */
@@ -114,6 +165,7 @@
             min-height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; user-select: none;
         }
         .status-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); }
+        .status-card:focus-visible { outline: 2px solid #ec4899; outline-offset: 3px; }
         .status-card .card-label { font-weight: 700; font-size: 15px; color: #fff; }
         .status-card .card-status { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 12px; border-radius: 50px; margin-top: 4px; }
         .status-card.free { border-color: rgba(74, 222, 128, 0.2); }
@@ -182,9 +234,38 @@
             .status-grid { grid-template-columns: repeat(2, 1fr); }
             .status-grid.ps-grid { grid-template-columns: repeat(2, 1fr); }
         }
+
+        /* ===== ACCESSIBILITY: SKIP LINK ===== */
+        .skip-link {
+            position: absolute; top: -100px; left: 12px; z-index: 3000;
+            background: #ec4899; color: #fff; padding: 12px 20px; border-radius: 4px;
+            font-weight: 700; font-size: 14px; transition: top 0.2s ease;
+        }
+        .skip-link:focus { top: 12px; }
+
+        /* ===== STICKY MOBILE CTA ===== */
+        .mobile-cta { display: none; }
+        @media (max-width: 767px) {
+            body { padding-bottom: 72px; }
+            .mobile-cta {
+                display: flex; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1500;
+                background: rgba(14, 14, 16, 0.97); backdrop-filter: blur(12px);
+                border-top: 1px solid rgba(139, 92, 246, 0.25);
+                padding: 10px 14px; gap: 10px;
+            }
+            .mobile-cta a, .mobile-cta button {
+                flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+                padding: 13px 10px; border-radius: 8px; font-weight: 700; font-size: 14px;
+                border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+            }
+            .mobile-cta .cta-call { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; }
+            .mobile-cta .cta-book { background: linear-gradient(135deg, #ec4899, #8b5cf6); color: #fff; }
+        }
     </style>
 </head>
 <body>
+
+    <a href="#hero" class="skip-link">Перейти к содержимому</a>
 
     <!-- ===== HEADER ===== -->
     <header>
@@ -204,9 +285,12 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
-        <video autoplay loop muted playsinline class="hero-bg" poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200">
+        <video autoplay loop muted playsinline class="hero-bg" poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200"
+               aria-hidden="true" tabindex="-1"
+               onerror="this.style.display='none'; var f=document.querySelector('.hero-bg-fallback'); if(f) f.style.display='block';">
             <source src="background.mp4" type="video/mp4">
         </video>
+        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" alt="" aria-hidden="true" class="hero-bg-fallback" style="display:none; position:absolute; top:0; left:0; width:100%; height:80vh; object-fit:cover; z-index:0;" />
         <div class="hero-overlay"></div>
         <div class="container hero-content">
             <div class="hero-badge">Плесецк • Круглосуточно</div>
@@ -298,9 +382,9 @@
 
     <!-- ===== МОДАЛЬНОЕ ОКНО БРОНИРОВАНИЯ ===== -->
     <div class="modal-overlay" id="bookingModal">
-        <div class="modal">
-            <button class="modal-close" id="closeBookingBtn">&times;</button>
-            <h2>Забронировать место</h2>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+            <button class="modal-close" id="closeBookingBtn" aria-label="Закрыть окно бронирования">&times;</button>
+            <h2 id="bookingModalTitle">Забронировать место</h2>
             <p>Выберите дату и время, чтобы забронировать станцию.</p>
             <form id="bookingForm">
                 <div class="form-group">
@@ -330,8 +414,8 @@
 
     <!-- ===== МОДАЛЬНОЕ ОКНО АВТОРИЗАЦИИ ===== -->
     <div class="modal-overlay" id="authModal">
-        <div class="modal">
-            <button class="modal-close" id="closeAuthBtn">&times;</button>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+            <button class="modal-close" id="closeAuthBtn" aria-label="Закрыть окно входа">&times;</button>
             <h2 id="authTitle">Вход в личный кабинет</h2>
             <p id="authDesc">Войдите, чтобы бронировать места и управлять бронями.</p>
             <form id="authForm">
@@ -353,9 +437,9 @@
 
     <!-- ===== МОДАЛЬНОЕ ОКНО ПРОФИЛЯ ===== -->
     <div class="modal-overlay" id="profileModal">
-        <div class="modal" style="max-width: 640px;">
-            <button class="modal-close" id="closeProfileBtn">&times;</button>
-            <h2>Мой кабинет</h2>
+        <div class="modal" style="max-width: 640px;" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
+            <button class="modal-close" id="closeProfileBtn" aria-label="Закрыть окно профиля">&times;</button>
+            <h2 id="profileModalTitle">Мой кабинет</h2>
             <div id="profileContent">
                 <div style="text-align:center; padding:20px; color:rgba(255,255,255,0.5);">Загрузка ваших броней...</div>
             </div>
@@ -373,16 +457,30 @@
         </div>
     </footer>
 
+    <!-- ===== STICKY MOBILE CTA ===== -->
+    <div class="mobile-cta">
+        <a href="tel:+79110687768" class="cta-call"><i class="fas fa-phone-alt"></i> Позвонить</a>
+        <button class="cta-book" id="mobileCtaBookBtn">Забронировать</button>
+    </div>
+
 
     <!-- ===== SUPABASE CONNECTION ===== -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        // На мобильных отключаем автовоспроизведение фонового видео — экономия трафика и батареи
+        if (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) {
+            var heroVideo = document.querySelector('.hero-bg');
+            var heroFallback = document.querySelector('.hero-bg-fallback');
+            if (heroVideo) { heroVideo.pause(); heroVideo.removeAttribute('autoplay'); heroVideo.style.display = 'none'; }
+            if (heroFallback) heroFallback.style.display = 'block';
+        }
+
         // ===========================
         // 1. ПОДКЛЮЧЕНИЕ К БАЗЕ ДАННЫХ
         // ===========================
         const SUPABASE_URL = 'https://wqmkakfpioldhezwpsbp.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_i4xLrm-li1fAeR9Q-6NkRA_XuVUTLNY';
-        const supabase = supabaseJs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // ===========================
         // 2. СОСТОЯНИЕ И ЭЛЕМЕНТЫ
@@ -419,13 +517,11 @@
 
         function updateUI(user) {
             if (user) {
-                authBtn.innerHTML = `Профиль ${user.email}`;
+                authBtn.textContent = `Профиль (${user.email})`;
                 authBtn.onclick = () => openModal('profileModal');
-                document.querySelectorAll('.btn-book, .btn-main').forEach(btn => btn.style.display = 'inline-block');
             } else {
                 authBtn.textContent = 'Войти';
                 authBtn.onclick = () => openModal('authModal');
-                document.querySelectorAll('.btn-book, .btn-main').forEach(btn => btn.style.display = 'inline-block');
             }
         }
 
@@ -460,13 +556,19 @@
         // ===========================
         // 4. УПРАВЛЕНИЕ МОДАЛЬНЫМИ ОКНАМИ
         // ===========================
+        let lastFocusedEl = null;
         function openModal(id) {
-            document.getElementById(id).classList.add('active');
+            lastFocusedEl = document.activeElement;
+            const modalEl = document.getElementById(id);
+            modalEl.classList.add('active');
             document.body.style.overflow = 'hidden';
+            const firstField = modalEl.querySelector('input, select, button.modal-close');
+            if (firstField) firstField.focus();
         }
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
             document.body.style.overflow = '';
+            if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') lastFocusedEl.focus();
         }
         // Обработчики закрытия
         [closeAuthBtn, closeBookingBtn, closeProfileBtn].forEach(btn => {
@@ -493,14 +595,15 @@
             const simGrid = document.getElementById('simGrid');
             pcGrid.innerHTML = ''; psGrid.innerHTML = ''; simGrid.innerHTML = '';
 
-            // Сначала проверим, какие станции заняты в данный момент (статус в БД будет формироваться по броням)
-            const now = new Date().toISOString();
+            // Сначала проверим, какие станции заняты ПРЯМО СЕЙЧАС.
+            // Используем публичное view station_occupancy (см. fix-occupancy-view.sql) —
+            // напрямую читать таблицу bookings нельзя: RLS-политика "users read own bookings"
+            // специально не даёт видеть чужие брони (это правильно для приватности данных
+            // других посетителей), поэтому такой запрос раньше всегда возвращал пусто.
             const { data: activeBookings } = await supabase
-                .from('bookings')
-                .select('station_id')
-                .gte('end_time', now)
-                .in('status', ['pending', 'confirmed']);
-            
+                .from('station_occupancy')
+                .select('station_id');
+
             const occupiedIds = new Set(activeBookings?.map(b => b.station_id) || []);
 
             stations.forEach(station => {
@@ -512,7 +615,10 @@
                     <div class="card-status">${isOccupied ? 'ЗАНЯТО' : 'СВОБОДНО'}</div>
                 `;
                 if (!isOccupied) {
-                    card.addEventListener('click', () => {
+                    card.setAttribute('role', 'button');
+                    card.setAttribute('tabindex', '0');
+                    card.setAttribute('aria-label', station.label + ': свободно. Нажмите, чтобы забронировать.');
+                    function selectStation() {
                         if (!currentUser) {
                             alert('Пожалуйста, войдите в аккаунт, чтобы забронировать место.');
                             openModal('authModal');
@@ -521,7 +627,13 @@
                         selectedStationId = station.id;
                         bookingStation.value = station.label;
                         openModal('bookingModal');
+                    }
+                    card.addEventListener('click', selectStation);
+                    card.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectStation(); }
                     });
+                } else {
+                    card.setAttribute('aria-label', station.label + ': занято');
                 }
                 if (station.type === 'pc') pcGrid.appendChild(card);
                 else if (station.type === 'ps5') psGrid.appendChild(card);
@@ -546,6 +658,15 @@
             const start = new Date(`${date}T${startTime}:00`);
             const end = new Date(start.getTime() + duration * 60 * 60 * 1000);
 
+            if (start < new Date()) {
+                alert('Нельзя забронировать время в прошлом. Выберите другое время.');
+                return;
+            }
+            if (!selectedStationId) {
+                alert('Станция не выбрана. Закройте окно и выберите место в схеме зала.');
+                return;
+            }
+
             const { error } = await supabase.from('bookings').insert({
                 user_id: currentUser.id,
                 station_id: selectedStationId,
@@ -562,6 +683,9 @@
                     alert('Ошибка бронирования: ' + error.message);
                 }
             } else {
+                if (typeof ym === 'function') {
+                    try { ym(YM_COUNTER_ID, 'reachGoal', 'booking_submit'); } catch (e) {}
+                }
                 alert('✅ Бронь успешно создана! Статус: Ожидает подтверждения.');
                 loadStations();
                 bookingForm.reset();
@@ -646,15 +770,21 @@
         authForm.addEventListener('submit', handleAuth);
 
         // Кнопки открытия бронирования
-        document.querySelectorAll('#openModalBtn, #openModalBtn2').forEach(btn => {
+        document.querySelectorAll('#openModalBtn, #openModalBtn2, #mobileCtaBookBtn').forEach(btn => {
             btn.addEventListener('click', () => {
                 if (!currentUser) {
                     alert('Пожалуйста, войдите в аккаунт для бронирования.');
                     openModal('authModal');
                 } else {
-                    alert('Выберите свободную станцию в схеме зала, чтобы забронировать её.');
+                    document.getElementById('halls').scrollIntoView({ behavior: 'smooth' });
                 }
             });
+        });
+
+        // Esc закрывает любую открытую модалку
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') return;
+            document.querySelectorAll('.modal-overlay.active').forEach(overlay => closeModal(overlay.id));
         });
 
         // Открытие профиля
